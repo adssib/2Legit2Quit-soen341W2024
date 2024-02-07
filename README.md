@@ -4,7 +4,7 @@ Name | ID | Github | Role
 Adib Akkari | 40216815 | adssib | Team Leader, communication, backend developer
 Steven Gourgy | 40223440 | |Front end developer
 Valentin Gornostaev | 40211600 | |  SQL, Database developer
-Bhumika Bhumika | 40223877 | |
+Bhumika Bhumika | 40223877 | | Front end Developer
 Houssam Ait Idir | 40155665 | |
 ## 1. Project Overview
 
