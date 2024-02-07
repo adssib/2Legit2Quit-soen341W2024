@@ -1,11 +1,11 @@
 # Team Members and Roles
-Name | ID | Github | Role
---- | --- | --- | ---
-Adib Akkari | 40216815 | adssib | Team Leader, communication, backend developer
-Steven Gourgy | 40213440 | MCSTEVE1000 |Front end developer
-Valentin Gornostaev | 40211600 | Valentino514 |  Database developer, backend developer
-Bhumika Bhumika | 40223877 | bhumi-0902 | Frontend developer
-Houssam Ait Idir | 40155665 | Houssam154 | 
+Name | ID | Github | Role | Background
+--- | --- | --- | --- | -- 
+Adib Akkari | 40216815 | adssib | Team Leader, communication, backend developer | Software engineer student doing a backend intership while taking the course 
+Steven Gourgy | 40213440 | MCSTEVE1000 | Front end developer | experienced in front end development and data science
+Valentin Gornostaev | 40211600 | Valentino514 |  Database developer, backend developer | Experience in Rest API development and Databases
+Bhumika Bhumika | 40223877 | bhumi-0902 | Frontend developer | Developed some projects in front end
+Houssam Ait Idir | 40155665 | Houssam154 |  | 
 ## 1. Project Overview
 
 ### 1.1 Project Objectives
