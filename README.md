@@ -2,10 +2,10 @@
 Name | ID | Github | Role
 --- | --- | --- | ---
 Adib Akkari | 40216815 | adssib | Team Leader, communication, backend developer
-Steven Gourgy | 40223440 | |Front end developer
-Valentin Gornostaev | 40211600 | |  SQL, Database developer
-Bhumika Bhumika | 40223877 | | Front end Developer
-Houssam Ait Idir | 40155665 | |
+Steven Gourgy | 40213440 | MCSTEVE1000 |Front end developer
+Valentin Gornostaev | 40211600 | Valentino514 |  Database developer, backend developer
+Bhumika Bhumika | 40223877 | bhumi-0902 | Frontend developer
+Houssam Ait Idir | 40155665 | Houssam154 | 
 ## 1. Project Overview
 
 ### 1.1 Project Objectives
@@ -49,6 +49,26 @@ Plan for next Sprint in Wiki | | |
 ## 3. Technology Stack
 
 ### 3.1 Backend Frameworks
+
+#### 3.1.1 Python 
+
+- Description: Python, with frameworks like Django or Flask, will be used for backend development.
+- Rationale: Python offers simplicity, readability, and a vast ecosystem of libraries and frameworks.
+
+Strengths: Simplicity, readability, vast ecosystem, strong community support.
+Weaknesses: Performance may be slower compared to compiled languages for certain tasks.
+
+#### 3.1.2 Node.js/Express.js
+- Description: Node.js with Express.js will be considered for backend development.
+- Rationale: Node.js enables non-blocking, event-driven architecture suitable for I/O-heavy applications.
+- Strengths: Non-blocking I/O, event-driven architecture, lightweight and scalable.
+- Weaknesses: Callback hell (mitigated by async/await), less suitable for CPU-intensive tasks.
+#### 3.1.3 .NET Core
+- Description: .NET Core will be considered for backend development, leveraging its cross-platform capabilities.
+- Rationale: .NET Core offers a mature framework with strong performance and scalability.
+- Strengths: Cross-platform compatibility, performance, scalability, extensive standard library.
+- Weaknesses: Learning curve for developers not familiar with the .NET ecosystem.
+  
 ### 3.2 Frontend Frameworks
 #### 3.2.1 React.js
   - Description: React.js will be used for building the frontend user interface.
@@ -83,3 +103,4 @@ Plan for next Sprint in Wiki | | |
 - Overview: Implement secure authentication and authorization mechanisms.
 
 ## 6. Conclusion
+ In conclusion, our project aims to develop a prototype car rental application with a focus on essential features, agile development, and secure implementation. By leveraging a carefully chosen technology stack and emphasizing collaboration and communication, we are confident in our ability to deliver a robust solution that meets the needs of our target audience.
