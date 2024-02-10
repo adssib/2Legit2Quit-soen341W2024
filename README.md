@@ -15,4 +15,4 @@ We are going to use a variety of front and backend framworks to develop this pro
 # extra links
 [Link for Meeting Minutes Spread Sheet](https://liveconcordia-my.sharepoint.com/:x:/g/personal/h_aitidi_live_concordia_ca/EZLWG--Jm5dPusCuZGsbBJkBjbDpXm2QouSt52PzoB9_5A?e=t7JhIi) 
 
-[Link for Members Contributions](https://liveconcordia-my.sharepoint.com/:x:/g/personal/h_aitidi_live_concordia_ca/EZLWG--Jm5dPusCuZGsbBJkBjbDpXm2QouSt52PzoB9_5A?e=t7JhIi)
+[Link for Members Contributions](https://1drv.ms/x/s!ApXMEtybGLIPmQ2fBPMcKYCOQS1C?e=nM8m03)
