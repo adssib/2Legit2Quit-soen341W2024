@@ -10,7 +10,7 @@ Houssam Ait Idir | 40155665 | Houssam154 | Frontend  |Computer engineering stude
 
 # Description of the project 
 We are going to develop a Prototype for car rental websites using Scrum agile methodology. 
-We are going to use a variety of front and backend frameworks to develop this prototype. Using different APIs and frameworks to communicate between front-end end and Backend 
+We are going to use a variety of front and backend frameworks to develop this prototype. We will be using different APIs and frameworks to communicate between front-end end and Backend 
 
 # extra links
 [Link for Meeting Minutes Spread Sheet](https://liveconcordia-my.sharepoint.com/:x:/g/personal/h_aitidi_live_concordia_ca/EZLWG--Jm5dPusCuZGsbBJkBjbDpXm2QouSt52PzoB9_5A?e=t7JhIi) 
