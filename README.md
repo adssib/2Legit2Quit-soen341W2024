@@ -1,7 +1,7 @@
 # Team Members and Roles
 Name | ID | Github | Role | Background
 --- | --- | --- | --- | -- 
-Adib Akkari | 40216815 | adssib | Team Leader, communication, backend developer | Software engineer student doing a backend internship while taking the course 
+Adib Akkari | 40216815 | adssib | Team Leader, backend developer | Software engineer student doing a backend internship while taking the course 
 Steven Gourgy | 40213440 | MCSTEVE1000 | Full Stack developer | experienced in front end development and data science
 Valentin Gornostaev | 40211600 | Valentino514 |  Database developer, backend developer | Experience in Rest API development and Databases
 Bhumika Bhumika | 40223877 | bhumi-0902 | Frontend developer | A software engineering student skilled in creating projects utilizing front-end development techniques.
