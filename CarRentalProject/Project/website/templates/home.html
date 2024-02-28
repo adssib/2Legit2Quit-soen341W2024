@@ -1,0 +1,60 @@
+{% extends 'base.html'%} 
+
+{%block content %}
+<!-- write reusable html below code here -->
+
+<div class="col-md-6 offset-md-3"> <!--centers everything-->
+
+{% if user.is_authenticated %} <!--if user is logged int-->
+
+<h1>Records:</h1>
+{%if records%}
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">City</th>
+        <th scope="col">Model</th>
+        <th scope="col">Type</th>
+        <th scope="col">Transmission</th>
+      </tr>
+    </thead>
+  <tbody>
+    {%for record in records%}
+    <tr>
+      <td>{{record.city}}</td>
+      <td>{{record.car_model}}</td>
+      <td>{{record.car_type}}</td>
+      <td>{{record.car_transmission}}</td>
+    {%endfor%}
+
+  </tbody>
+  </table>
+
+
+{%endif%}
+
+{%else%} <!--log in prompt-->
+
+    <h1>Login</h1>
+    <br>
+    <form method="POST" action ="{%url 'home' %}"> <!--using POST because we will retrieve the user information-->
+    {%csrf_token%} <!--security thing dont worry about it-->
+
+    <form> <!--form to login html-->
+        <div class="mb-3">
+          <label>Username</label>
+          <input type="text" class="form-control" name='username' required>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" name='password' required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
+
+    </form>
+
+    {%endif%}
+
+    {% endblock %}
