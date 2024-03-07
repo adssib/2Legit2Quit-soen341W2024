@@ -9,9 +9,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-
+          <!-- Uncomment this when you want to add logic to show the Cars you have  --> 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="add_record">Add Records</a>
           </li>
 
           {%if user.is_authenticated%}
@@ -21,10 +21,15 @@
           </li>
           {%else%}
           <li class="nav-item">
-            <a class="nav-link" href={%url 'home'%}>Login</a> <!--if the user is not logged in, it will send the user home, which will prompt him to log in-->
+            <a class="nav-link" href={% url 'register' %}>Register</a> <!--if the user is not logged in, it will send the user home, which will prompt him to log in-->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'home' %}>Login</a> <!--if the user is not logged in, it will send the user home, which will prompt him to log in-->
           </li>
           {%endif%}
-          <li class="nav-item dropdown">
+
+          <!-- Uncomment this when adding CRUD operations for ADMIN as of viewing the users and viewing the registrations -->
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
             </a>
@@ -34,7 +39,7 @@
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
-          </li>
+          </li> -->
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

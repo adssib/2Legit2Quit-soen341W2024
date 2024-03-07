@@ -16,6 +16,7 @@
         <th scope="col">Model</th>
         <th scope="col">Type</th>
         <th scope="col">Transmission</th>
+        <th scope="col">ID</th>
       </tr>
     </thead>
   <tbody>
@@ -25,6 +26,7 @@
       <td>{{record.car_model}}</td>
       <td>{{record.car_type}}</td>
       <td>{{record.car_transmission}}</td>
+      <td><a href="{% url 'record' record.id %}">{{ record.id }}</a></td>
     {%endfor%}
 
   </tbody>
