@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from .models import Product
 from .products import products
 from .serializers import ProductSerializer
+from .models import Reservation
+from .serializers import ReservationSerializer
 
 # Create your views here.
 
@@ -40,3 +42,12 @@ def getProduct(request, pk):
 
 
     return Response(serializer.data)
+
+@api_view(['POST'])
+def create_reservation(request):
+    serializer = ReservationSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()  # Assuming you handle user and product association within the serializer or here directly
+        return Response(serializer.data, status=201)
+    else:
+        return Response(serializer.errors, status=400)

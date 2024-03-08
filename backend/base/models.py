@@ -70,5 +70,15 @@ class BranchAddress(models.Model):
     def __str__(self):
         return str(self.address)
     
+class Reservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Reservation for {self.product.name} by {self.user.username}"
+    
 
 
