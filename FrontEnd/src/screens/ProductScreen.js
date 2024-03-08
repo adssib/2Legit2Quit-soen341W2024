@@ -43,7 +43,7 @@ function ProductScreen() {
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                            Price: ${product.price}
+                            Price: ${product.price} per day
                         </ListGroup.Item>
 
                         <ListGroup.Item>
@@ -59,7 +59,7 @@ function ProductScreen() {
                                 <Row>
                                     <Col>Price:</Col>
                                     <Col>
-                                        <strong>${product.price}</strong>
+                                        <strong>${product.price}</strong> per day
                                     </Col>
                                 </Row>
                             </ListGroup.Item>
