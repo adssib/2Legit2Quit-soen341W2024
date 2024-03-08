@@ -1,18 +1,28 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import products from '../products';
+import axios from 'axios';
 
 function ProductScreen() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const product = products.find((p) => p._id === id);
+
+    const [product, setProduct] = useState({}); // Initialize as an object
+
+    useEffect(() => {
+        async function fetchProduct() {
+            const {data} = await axios.get(`/api/products/${id}`); // Use `id` directly
+            setProduct(data);
+        }
+  
+        fetchProduct();
+  
+    }, [id]); // Include `id` in the dependency array
 
     const handleReserveClick = () => {
         navigate('/start-reservation', { state: { selectedProductId: product._id } });
     };
-    
 
     return (
         <div>
