@@ -6,6 +6,7 @@ import LoginScreen from './screens/LoginScreen';
 import CreateAccountScreen from './screens/CreateAccountScreen';
 import CartScreen from './screens/CartScreen';
 import SearchScreen from './screens/SearchScreen';
+import ReservationForm from './components/ReservationForm';
 
 
 
@@ -29,7 +30,8 @@ function App() {
               <Route path='/create-account' element={<CreateAccountScreen/>} />
               <Route path='/cart' element={<CartScreen/>} />
               <Route path='/search/:keyword' element={<SearchScreen/>} />
-
+              <Route path="/reserve" component={ReservationForm} />
+              
             </Routes>
         </Container>
       </main>

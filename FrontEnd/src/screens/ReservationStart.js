@@ -3,7 +3,12 @@ import { Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import products from '../products'; // Assuming this is your list of cars
 
+import { useDispatch } from 'react-redux'; // Import if using Redux
+import { createReservation } from '../actions/reservationActions'; // Adjust the path as necessary
+
+
 function ReservationStart() {
+    const dispatch = useDispatch();
     const location = useLocation();
     // Access the state passed through navigate function
     const selectedProductId = location.state?.selectedProductId;
@@ -25,9 +30,18 @@ function ReservationStart() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Logic to handle reservation start
-        console.log({ selectedCar, startDate, endDate });
-        // Typically, here you would make an API call to save the reservation
+        
+        const reservationData = {
+            product: selectedCar,
+            start_date: startDate,
+            end_date: endDate,
+            // Add any other data your backend expects
+        };
+
+        // Dispatch the action if using Redux
+        dispatch(createReservation(reservationData));
+
+        // If not using Redux, replace the above line with an axios call similar to what's inside the createReservation action
     };
 
     return (
