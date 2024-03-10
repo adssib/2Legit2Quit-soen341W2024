@@ -7,6 +7,8 @@ import CreateAccountScreen from './screens/CreateAccountScreen';
 import CartScreen from './screens/CartScreen';
 import SearchScreen from './screens/SearchScreen';
 import ReservationForm from './components/ReservationForm';
+import RegisterScreen from './screens/RegisterScreen'
+import ProfileScreen from './screens/ProfileScreen'
 
 
 
@@ -27,6 +29,8 @@ function App() {
               <Route path='/start-reservation' element={<ReservationStart />} />
               <Route path='/reservation/:id' element={<ReservationDetails />} />
               <Route path='/login' element={<LoginScreen/>} />
+              <Route path='/register' component={RegisterScreen} />
+              <Route path='/Profile' component={ProfileScreen} />
               <Route path='/create-account' element={<CreateAccountScreen/>} />
               <Route path='/cart' element={<CartScreen/>} />
               <Route path='/search/:keyword' element={<SearchScreen/>} />
