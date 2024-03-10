@@ -1,40 +1,35 @@
-import React, { useState , useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col, Container } from 'react-bootstrap';
-import { useNavigate, Link, redirect } from 'react-router-dom';
-import Loader from '../components/Loader'
-import Message from '../components/Message'
-import { useDispatch,useSelector } from 'react-redux';
-import { login } from '../actions/userActions'
-import FormContainer from '../components/FormContainer'
+import { useNavigate, Link, useLocation } from 'react-router-dom'; // Updated to use useLocation
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../actions/userActions';
+import FormContainer from '../components/FormContainer';
 
-
-function LoginScreen({location, history} ) {
-
+function LoginScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-    const dispatch = useDispatch ()
+    const dispatch = useDispatch();
+    const navigate = useNavigate(); // For programmatically navigating
+    const location = useLocation(); // Get access to the location object
 
-    const redirect =  location.search ?  location.search.split('=') [1] : '/'
+    const redirect = location.search ? location.search.split('=')[1] : '/';
 
-    const userLogin = useSelector(state => state.userLogin)
-    const {error, loading, userInfo } = userLogin
+    const userLogin = useSelector(state => state.userLogin);
+    const { error, loading, userInfo } = userLogin;
 
-    useEffect ( () => {
+    useEffect(() => {
+        if (userInfo) {
+            navigate(redirect); // Use navigate for redirection
+        }
+    }, [navigate, userInfo, redirect]);
 
-          if (userInfo){
-            history.push (redirect)
-          }
-
-    }, [history,userInfo,redirect] )  
-
-    
-
-      const submitHandler = (e) => {
-         e.preventDefault();
-         dispatch(login(email,password))
-         //  navigate('/');
-     };
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(login(email, password));
+    };
 
     return (
             
@@ -45,7 +40,7 @@ function LoginScreen({location, history} ) {
 
                  {error && <Message variant='danger' >{error} </Message>}
 
-                {loading  && <loader/>}
+                {loading  && <oader/>}
 
 
                  <Form onSubmit={submitHandler} > 
@@ -58,7 +53,7 @@ function LoginScreen({location, history} ) {
                  type = 'email'
                  placeholder='Enter Email'
                  value={email}
-                 onChange={ (e => setEmail(e.target.value))}
+                 onChange={ (e) => setEmail(e.target.value)}
                  >  
                              </Form.Control>
                          </Form.Group>
@@ -71,7 +66,7 @@ function LoginScreen({location, history} ) {
                  type = 'password'
                  placeholder='Enter Password'
                  value={password}
-                 onChange={ (e => setPassword(e.target.value))}
+                 onChange={ (e) => setPassword(e.target.value)}
                  >  
                          </Form.Control>
                  </Form.Group>
@@ -86,12 +81,11 @@ function LoginScreen({location, history} ) {
 
                  <Row className='py-3'>
                     
-                 <Col >
-                    New Customer?  <Link 
-                      to={redirect ? '/register?redirect=${redirect}' : '/register'}> 
-                    Register 
-                    </Link>
-                  </Col>
+                 <Col>
+                      New Customer? <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+                      Register
+                        </Link>
+                </Col>
                      </Row>
 
 

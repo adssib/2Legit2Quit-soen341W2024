@@ -27,7 +27,7 @@ function Header() {
 
   const dispatch = useDispatch()
 
-  const logoutHanlder = () => {
+  const logoutHandler = () => {
      dispatch(logout()) 
   }
 
@@ -56,7 +56,7 @@ function Header() {
                         <NavDropdown.Item > Profile </NavDropdown.Item>
                         </LinkContainer>
 
-                        <NavDropdown.Item onCLick = 'logoutHanlder'> Logout </NavDropdown.Item>
+                        <NavDropdown.Item onClick = {logoutHandler}> Logout </NavDropdown.Item>
 
               </NavDropdown>
 

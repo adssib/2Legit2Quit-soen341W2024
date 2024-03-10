@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import LoginScreen from './screens/LoginScreen';
-import CreateAccountScreen from './screens/CreateAccountScreen';
+
 import CartScreen from './screens/CartScreen';
 import SearchScreen from './screens/SearchScreen';
 import ReservationForm from './components/ReservationForm';
@@ -29,12 +29,12 @@ function App() {
               <Route path='/start-reservation' element={<ReservationStart />} />
               <Route path='/reservation/:id' element={<ReservationDetails />} />
               <Route path='/login' element={<LoginScreen/>} />
-              <Route path='/register' component={RegisterScreen} />
-              <Route path='/Profile' component={ProfileScreen} />
-              <Route path='/create-account' element={<CreateAccountScreen/>} />
+              <Route path='/register' element={<RegisterScreen/>} />
+              <Route path='/profile' element={<ProfileScreen />} />
+              
               <Route path='/cart' element={<CartScreen/>} />
               <Route path='/search/:keyword' element={<SearchScreen/>} />
-              <Route path="/reserve" component={ReservationForm} />
+              <Route path="/reserve" element={<ReservationForm />} />
               
             </Routes>
         </Container>
