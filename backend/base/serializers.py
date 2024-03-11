@@ -12,6 +12,9 @@ class ProductSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class ReservationSerializer(serializers.ModelSerializer):
+    start_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d",])
+    end_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d",])
+
     class Meta:
         model = Reservation
         fields = '__all__'
@@ -54,3 +57,4 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = '__all__'
+        read_only_fields = ('user')
