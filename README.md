@@ -16,3 +16,108 @@ We are going to use a variety of front and backend frameworks to develop this pr
 [Link for Meeting Minutes Spread Sheet](https://liveconcordia-my.sharepoint.com/:x:/g/personal/h_aitidi_live_concordia_ca/EZLWG--Jm5dPusCuZGsbBJkBjbDpXm2QouSt52PzoB9_5A?e=t7JhIi) 
 
 [Link for Members Contributions](https://1drv.ms/x/s!ApXMEtybGLIPmQ2fBPMcKYCOQS1C?e=nM8m03)
+
+
+# How to run the repositry?
+
+## Getting Started
+
+This project has been written in Django as Backend and React in frontend.
+
+You need to check if they are installed on your app. 
+
+checking if python is installed on your machine:
+```bash
+python --version
+```
+
+checking if npm is installed on your machine (you need npm do start React Projects) :
+```bash
+npm --version
+```
+
+## How to Run the project?
+
+After cloning the repository on your machine its time to run it using these commands: 
+
+Make sure you are on the Working Folder
+
+```bash
+cd 2Legit2Quit-soen341W2024
+```
+
+### Activating the Backend
+
+Create a Virtual Environment
+
+Download Virtual Environment using pip:
+
+```bash
+pip install virtualenv
+```
+Create a virtual environment using Python's venv module:
+
+```bash
+python -m venv venv
+```
+
+Sometimes You need to allow Scripts everytime you want to activate the virtual environment
+
+USe this command to do so: 
+
+```bash
+Set-ExecutionPolicy Unrestricted -Scope Process
+```
+
+Activate the virtual environment:
+```bash
+.\venv\Scripts\activate  # On Windows
+source venv/bin/activate  # On macOS/Linux
+```
+
+Then, go to the BackEnd directory
+
+```bash
+cd Backend
+```
+
+install Backend dependencies 
+
+```bash
+pip install -r requirements.txt
+```
+To start it: 
+
+```bash
+python manage.py runserver
+```
+### Creating a superuser
+
+If you are unable to login to the backend framework, run this command in your backend terminal to create a new user
+
+```bash
+python manage.py createsuperuser
+```
+It will prompt you to create a username, an email and password. After you finish, run the backend server again and use your email as the username and the password you just created.
+
+### Activating the Frontend
+
+```bash
+cd Frontend
+```
+
+install Frontend dependencies 
+
+```bash 
+npm install 
+```
+
+For the reservation functionalities, this is also important to install:
+```bash
+npm install react-datepicker 
+```
+To start it: 
+
+```bash
+npm start
+```
