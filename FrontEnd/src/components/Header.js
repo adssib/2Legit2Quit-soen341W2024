@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import  {useDispatch, useSelector } from 'react-redux';
-import { NavDropdown, Navbar, Nav, Container, Form, FormControl, Button } from 'react-bootstrap';
+import { Button, Container, Form, FormControl, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
-import {logout} from '../actions/userActions';
+import { logout } from '../actions/userActions';
 
 
 function Header() {
@@ -70,6 +70,25 @@ function Header() {
               <LinkContainer to='/start-reservation'>
                 <Nav.Link>Start Reservation</Nav.Link>
               </LinkContainer>
+
+              {userInfo && userInfo.isAdmin && (
+                 <NavDropdown title = 'Admin' id = 'adminmenu'  >
+                 <LinkContainer to='/admin/userList'> 
+                 <NavDropdown.Item >Users </NavDropdown.Item>
+                 </LinkContainer>
+
+                 <LinkContainer to='/admin/productlist'> 
+                 <NavDropdown.Item >Products </NavDropdown.Item>
+                 </LinkContainer>
+
+                 <LinkContainer to='/admin/orderlist'> 
+                 <NavDropdown.Item >Orders </NavDropdown.Item>
+                 </LinkContainer>
+
+                
+
+       </NavDropdown>
+              )}
 
             </Nav>
             <Form className="d-flex" onSubmit={submitHandler}>

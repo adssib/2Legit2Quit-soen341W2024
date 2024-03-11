@@ -88,6 +88,33 @@ def getUserById(request, pk):
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
 
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateUser(request, pk):
+     user = User.objects.get(id=pk)
+    
+
+     data = request.data
+     user.first_name = data['name']
+     user.username = data['email']
+     user.email = data['email']
+     user.is_staff = data['isAdmin']
+
+    
+
+     user.save()
+     serializer = UserSerializer(user, many=False)
+
+     return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])
+def deleteUser(request, pk):
+    user_for_deletion = User.objects.get(id=pk)
+    user_for_deletion.delete() 
+    return Response('User was deleted')
+
 
 # @api_view(['PUT'])
 # @permission_classes([IsAuthenticated])

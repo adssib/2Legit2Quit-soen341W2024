@@ -1,22 +1,25 @@
-import { Container } from 'react-bootstrap'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import { Container } from 'react-bootstrap';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import Footer from './components/Footer';
+import Header from './components/Header';
 import LoginScreen from './screens/LoginScreen';
 
-import CartScreen from './screens/CartScreen';
-import SearchScreen from './screens/SearchScreen';
 import ReservationForm from './components/ReservationForm';
-import RegisterScreen from './screens/RegisterScreen'
-import ProfileScreen from './screens/ProfileScreen'
+import CartScreen from './screens/CartScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import SearchScreen from './screens/SearchScreen';
 
 
 
-import ReservationStart from './screens/ReservationStart';
 import ReservationDetails from './screens/ReservationDetails';
+import ReservationStart from './screens/ReservationStart';
 
-import HomeScreen from './screens/HomeScreen'
-import ProductScreen from './screens/ProductScreen'
+import HomeScreen from './screens/HomeScreen';
+import ProductScreen from './screens/ProductScreen';
+
+import UserEditScreen from './screens/UserEditScreen';
+import UserListScreen from './screens/UserListScreen';
 function App() {
   return (
     <Router>
@@ -35,6 +38,8 @@ function App() {
               <Route path='/cart' element={<CartScreen/>} />
               <Route path='/search/:keyword' element={<SearchScreen/>} />
               <Route path="/reserve" element={<ReservationForm />} />
+              <Route path="/admin/userlist" element={<UserListScreen />} />
+              <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
               
             </Routes>
         </Container>
