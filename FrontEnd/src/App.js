@@ -18,8 +18,10 @@ import ReservationStart from './screens/ReservationStart';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 
-import UserListScreen from './screens/UserListScreen'
-import UserEditScreen from './screens/UserEditScreen'
+import UserEditScreen from './screens/UserEditScreen';
+import UserListScreen from './screens/UserListScreen';
+import ProductListScreen from './screens/ProductListScreen';
+
 function App() {
   return (
     <Router>
@@ -31,6 +33,7 @@ function App() {
               <Route path='/product/:id' element={<ProductScreen/>} />
               <Route path='/start-reservation' element={<ReservationStart />} />
               <Route path='/reservation/:id' element={<ReservationDetails />} />
+              
               <Route path='/login' element={<LoginScreen/>} />
               <Route path='/register' element={<RegisterScreen/>} />
               <Route path='/profile' element={<ProfileScreen />} />
@@ -38,9 +41,12 @@ function App() {
               <Route path='/cart' element={<CartScreen/>} />
               <Route path='/search/:keyword' element={<SearchScreen/>} />
               <Route path="/reserve" element={<ReservationForm />} />
+
               <Route path="/admin/userlist" element={<UserListScreen />} />
               <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
               
+              <Route path='/admin/productlist' element={<ProductListScreen/>} />
+
             </Routes>
         </Container>
       </main>
