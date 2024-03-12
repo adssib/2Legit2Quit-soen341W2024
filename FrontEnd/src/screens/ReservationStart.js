@@ -1,52 +1,87 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form, Container, Row, Col } from 'react-bootstrap';
+import { Button, Form, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
-import products from '../products'; // Assuming this is your list of cars
+import products from '../products';
+import axios from 'axios'; 
 
-import { useDispatch } from 'react-redux'; // Import if using Redux
-import { createReservation } from '../actions/reservationActions'; // Adjust the path as necessary
-
+import { useDispatch } from 'react-redux';
+import { createReservation } from '../actions/reservationActions'; 
 
 function ReservationStart() {
     const dispatch = useDispatch();
     const location = useLocation();
-    // Access the state passed through navigate function
     const selectedProductId = location.state?.selectedProductId;
 
-    // States for form fields
+    //States for form fields
     const [selectedCar, setSelectedCar] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
-    // useEffect to pre-populate the form if selectedProductId is passed
+    //error or success
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState(''); 
+
     useEffect(() => {
         if (selectedProductId) {
             setSelectedCar(selectedProductId);
         } else {
-            // Default to the first car if no product ID is passed
             setSelectedCar(products[0]?._id || '');
         }
     }, [selectedProductId]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        const reservationData = {
-            product: selectedCar,
-            start_date: startDate,
-            end_date: endDate,
-            // Add any other data your backend expects
-        };
 
-        // Dispatch the action if using Redux
-        dispatch(createReservation(reservationData));
+const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        // If not using Redux, replace the above line with an axios call similar to what's inside the createReservation action
+//to reset the messages
+    setError(''); 
+    setSuccess(''); 
+
+    //the dates are set by this YYYY-MM-DD
+    const formattedStartDate = startDate.split('T')[0];
+    const formattedEndDate = endDate.split('T')[0]; 
+
+    if (!formattedStartDate || !formattedEndDate) {
+        setError('Please select both start and end dates.');
+        return;
+    }
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const startDateObj = new Date(formattedStartDate);
+    const endDateObj = new Date(formattedEndDate);
+
+    if (startDateObj < today || endDateObj < today) {
+        setError('Reservation dates cannot be in the past.');
+        return;
+    }
+    if (startDateObj > endDateObj) {
+        setError('Start date cannot be after the end date.');
+        return;
+    }
+
+    const reservationData = {
+        product: selectedCar,
+        start_date: formattedStartDate,
+        end_date: formattedEndDate,
     };
+
+    try {
+        
+        const response = await axios.post('/api/reservations/', reservationData);
+        setSuccess('Reservation created with success!');
+        console.log(response.data);
+        
+    } catch (error) {
+        console.error("Error creating reservation:", error.response.data);
+        setError('Failed to create reservation. Car is already reserved at this date. Please try a different date.');
+    }
+};
 
     return (
         <Container>
             <h1>Start a Reservation</h1>
+            {error && <Alert variant="danger">{error}</Alert>}
+            {success && <Alert variant="success">{success}</Alert>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="carSelect">
                     <Form.Label>Select a Car</Form.Label>

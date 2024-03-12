@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Product(models.Model):
     user= models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name= models.CharField(max_length=200, null=True, blank=True)
-    image=models.ImageField(null=True, blank=True)
+    image=models.ImageField(null=True, blank=True,  default='/placeholder.png')
     brand=models.CharField(max_length=200, null=True, blank=True)
     category=models.CharField(max_length=200, null=True, blank=True)
     description=models.TextField(null=True, blank=True)
@@ -78,7 +78,6 @@ class Reservation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Reservation for {self.product.name} by {self.user.username}"
-    
-
-
+        product_name = self.product.name if self.product else "Unknown Product"
+        
+        return f"{product_name} from {self.start_date} to {self.end_date}"

@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { NavDropdown, Navbar, Nav, Container, Form, FormControl, Button } from 'react-bootstrap';
+import { Button, Container, Form, FormControl, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { logout } from '../actions/userActions';
+
 
 function Header() {
+
+
   const [keyword, setKeyword] = useState('');
   const navigate = useNavigate(); // Instantiate the navigate hook
 
@@ -15,6 +20,16 @@ function Header() {
       navigate('/'); // Redirect to home page if search is empty
     }
   };
+
+  const userLogin = useSelector (state => state.userLogin)
+
+  const {userInfo} = userLogin  
+
+  const dispatch = useDispatch()
+
+  const logoutHandler = () => {
+     dispatch(logout()) 
+  }
 
   return (
     <header>
@@ -35,13 +50,45 @@ function Header() {
                 <Nav.Link><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
               </LinkContainer>
 
+             {userInfo ? (
+              <NavDropdown title = {userInfo.name} id = 'username'  >
+                        <LinkContainer to='/profile'> 
+                        <NavDropdown.Item > Profile </NavDropdown.Item>
+                        </LinkContainer>
+
+                        <NavDropdown.Item onClick = {logoutHandler}> Logout </NavDropdown.Item>
+
+              </NavDropdown>
+
+             ) : (
               <LinkContainer to='/login'>
-                <Nav.Link><i className="fas fa-user"></i> Login</Nav.Link>
-              </LinkContainer>
+              <Nav.Link><i className="fas fa-user"></i> Login</Nav.Link>
+            </LinkContainer>
+
+             )}
 
               <LinkContainer to='/start-reservation'>
                 <Nav.Link>Start Reservation</Nav.Link>
               </LinkContainer>
+
+              {userInfo && userInfo.isAdmin && (
+                 <NavDropdown title = 'Admin' id = 'adminmenu'  >
+                 <LinkContainer to='/admin/userList'> 
+                 <NavDropdown.Item >Users </NavDropdown.Item>
+                 </LinkContainer>
+
+                 <LinkContainer to='/admin/productlist'> 
+                 <NavDropdown.Item >Products </NavDropdown.Item>
+                 </LinkContainer>
+
+                 <LinkContainer to='/admin/orderlist'> 
+                 <NavDropdown.Item >Orders </NavDropdown.Item>
+                 </LinkContainer>
+
+                
+
+       </NavDropdown>
+              )}
 
             </Nav>
             <Form className="d-flex" onSubmit={submitHandler}>
