@@ -45,7 +45,7 @@ function App() {
               <Route path="/admin/userlist" element={<UserListScreen />} />
               <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
               
-              <Route path='/admin/productlist' component={ProductListScreen} />
+              <Route path='/admin/productlist' element={<ProductListScreen/>} />
 
             </Routes>
         </Container>
