@@ -18,8 +18,8 @@ import ReservationStart from './screens/ReservationStart';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 
-import UserEditScreen from './screens/UserEditScreen';
-import UserListScreen from './screens/UserListScreen';
+import UserListScreen from './screens/UserListScreen'
+import UserEditScreen from './screens/UserEditScreen'
 function App() {
   return (
     <Router>
