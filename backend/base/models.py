@@ -78,7 +78,6 @@ class Reservation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Reservation for {self.product.name} by {self.user.username}"
-    
-
-
+        product_name = self.product.name if self.product else "Unknown Product"
+        
+        return f"{product_name} from {self.start_date} to {self.end_date}"

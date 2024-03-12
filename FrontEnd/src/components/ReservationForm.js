@@ -15,7 +15,6 @@ function ReservationForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            {/* Product select, start date, end date inputs */}
             <button type="submit">Reserve Car</button>
         </form>
     );

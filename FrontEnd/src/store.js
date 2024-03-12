@@ -1,20 +1,45 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import {thunk} from 'redux-thunk';
-import { productListReducer, productDetailsReducer } from './reducers/productReducers'
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
+import { productDetailsReducer, productListReducer } from './reducers/productReducers';
+import {
+  userLoginReducer,
+  userRegisterReducer,
+  userDetailsReducer,
+  userUpdateProfileReducer,
+  userListReducer,
+  userDeleteReducer,
+  userUpdateReducer,
+} from './reducers/userReducers';
 
 const reducer = combineReducers({
-  productList:productListReducer,
-  productDetails:productDetailsReducer,
-  
+  productList: productListReducer,
+  productDetails: productDetailsReducer,
+  userLogin: userLoginReducer,
+  userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
+  userList: userListReducer,
+  userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer,
 });
 
-const initialState={}
+const cartItemsFromStorage = localStorage.getItem('cartItems') ?
+    JSON.parse(localStorage.getItem('cartItems')) : [];
 
-const middleware=[thunk]
+const userInfoFromStorage = localStorage.getItem('userInfo') ?
+    JSON.parse(localStorage.getItem('userInfo')) : null;
+
+const initialState = {
+  cart: {
+    cartItems: cartItemsFromStorage,
+  },
+  userLogin: { userInfo: userInfoFromStorage },
+};
 
 const store = configureStore({
   reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+  preloadedState: initialState,
+  // Redux Thunk middleware is automatically included
 });
 
 export default store;
