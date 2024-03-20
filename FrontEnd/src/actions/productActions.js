@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { 
+import {
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
     PRODUCT_LIST_FAIL,
@@ -20,51 +20,61 @@ import {
     PRODUCT_UPDATE_SUCCESS,
     PRODUCT_UPDATE_FAIL,
 
- } from '../constants/productConstants'
 
- export const listProducts=()=> async (dispatch)=>{
-    try{
-        dispatch({type:PRODUCT_LIST_REQUEST})
 
-        const {data} = await axios.get('/api/products/')
+
+  
+
+} from '../constants/productConstants'
+
+
+export const listProducts = (keyword = '') => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_LIST_REQUEST })
+
+        const { data } = await axios.get(`/api/products/${keyword}`)
 
         dispatch({
-            type:PRODUCT_LIST_SUCCESS,
-            payload:data
+            type: PRODUCT_LIST_SUCCESS,
+            payload: data
         })
-    }catch(error){
+
+    } catch (error) {
         dispatch({
-            type:PRODUCT_LIST_FAIL,
-            payload:error.response && error.response.data.detail
-                ?error.response.data.detail
-                :error.message,
-        })
-    }
-
-
- }
-
- export const listProductDetails=(id)=> async (dispatch)=>{
-    try{
-        dispatch({type:PRODUCT_DETAILS_REQUEST})
-
-        const {data} = await axios.get(`/api/products/${id}`)
-
-        dispatch({
-            type:PRODUCT_DETAILS_SUCCESS,
-            payload:data
-        })
-    }catch(error){
-        dispatch({
-            type:PRODUCT_DETAILS_FAIL,
-            payload:error.response && error.response.data.detail
-                ?error.response.data.detail
-                :error.message,
+            type: PRODUCT_LIST_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
         })
     }
- }
+}
 
- export const deleteProduct = (id) => async (dispatch, getState) => {
+
+
+
+export const listProductDetails = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_DETAILS_REQUEST })
+
+        const { data } = await axios.get(`/api/products/${id}`)
+
+        dispatch({
+            type: PRODUCT_DETAILS_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_DETAILS_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+    }
+}
+
+
+export const deleteProduct = (id) => async (dispatch, getState) => {
     try {
         dispatch({
             type: PRODUCT_DELETE_REQUEST
@@ -100,6 +110,9 @@ import {
         })
     }
 }
+
+
+
 
 export const createProduct = () => async (dispatch, getState) => {
     try {
