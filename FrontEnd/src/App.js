@@ -3,6 +3,8 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import LoginScreen from './screens/LoginScreen';
+import ReservationListScreen from './screens/ReservationListScreen'; 
+
 
 import ReservationForm from './components/ReservationForm';
 import CartScreen from './screens/CartScreen';
@@ -30,6 +32,7 @@ function App() {
       <main className='py-3'>
         <Container>
           <Routes>
+              <Route path='/admin/reservationlist' element={<ReservationListScreen />} />
               <Route path='/' element={<HomeScreen />} exact />
               <Route path='/product/:id' element={<ProductScreen/>} />
               <Route path='/start-reservation' element={<ReservationStart />} />

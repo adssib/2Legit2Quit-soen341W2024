@@ -1,16 +1,35 @@
 import axios from 'axios';
 
-// Action Type
+
+import { USER_LOGIN_SUCCESS } from '../constants/userConstants';
+
+// Action Types
+export const CREATE_RESERVATION_REQUEST = 'CREATE_RESERVATION_REQUEST';
 export const CREATE_RESERVATION_SUCCESS = 'CREATE_RESERVATION_SUCCESS';
 export const CREATE_RESERVATION_FAIL = 'CREATE_RESERVATION_FAIL';
+export const CREATE_RESERVATION_RESET = 'CREATE_RESERVATION_RESET';
+export const RESERVATION_LIST_REQUEST = 'RESERVATION_LIST_REQUEST';
+export const RESERVATION_LIST_SUCCESS = 'RESERVATION_LIST_SUCCESS';
+export const RESERVATION_LIST_FAIL = 'RESERVATION_LIST_FAIL';
 
-export const createReservation = (reservationData) => async (dispatch) => {
+export const createReservation = (reservationData) => async (dispatch, getState) => {
     try {
+        const { userLogin: { userInfo } } = getState();
+        if (!userInfo) {
+            dispatch({
+                type: CREATE_RESERVATION_FAIL,
+                payload: 'User not logged in',
+            });
+            return; 
+        }
+
         const config = {
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${userInfo.token}`,
             },
         };
+
         const { data } = await axios.post('/api/reservations/', reservationData, config);
 
         dispatch({
@@ -25,6 +44,34 @@ export const createReservation = (reservationData) => async (dispatch) => {
                 ? error.response.data.detail
                 : error.message,
         });
+    }
+};
+export const listReservations = () => async (dispatch, getState) => {
+    try {
+        dispatch({ type: RESERVATION_LIST_REQUEST });
 
+        const { userLogin: { userInfo } } = getState();
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${userInfo.token}`,
+            },
+        };
+
+        const { data } = await axios.get('/api/reservations/', config);
+
+        dispatch({
+            type: RESERVATION_LIST_SUCCESS,
+            payload: data,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: RESERVATION_LIST_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+        });
     }
 };
