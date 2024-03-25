@@ -175,3 +175,11 @@ MEDIA_ROOT='static/images'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS=True
+
+EMAIL_BACKEND = 'django.core.mail.backends.stmp.EmailBackend'
+EMAIL_HOST = 'live.smtp.mailtrap.io'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'api'
+EMAIL_HOST_PASSWORD = '47bab7a75e331b951080b0dba4915173'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
