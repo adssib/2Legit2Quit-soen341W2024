@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from datetime import datetime
 from base.models import Product, Reservation
 from base.serializers import ReservationSerializer
+from base.generate_contract import generate_rental_agreement_pdf_and_send_email
+
+file_path = "../static/receipt/rental_agreement.pdf"
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])  
@@ -34,6 +37,9 @@ def reservation_list_or_create(request):
         serializer = ReservationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
+
+            generate_rental_agreement_pdf_and_send_email(file_path, request.user, Reservation)
+
             return Response(serializer.data, status=201)
         else:
             return Response(serializer.errors, status=400)
