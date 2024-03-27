@@ -6,7 +6,7 @@ from base.models import Product, Reservation
 from base.serializers import ReservationSerializer
 
 @api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])  # Assuming you want both actions to be authenticated
+@permission_classes([IsAuthenticated])  
 def reservation_list_or_create(request):
     if request.method == 'GET':
         # List all reservations
@@ -15,11 +15,9 @@ def reservation_list_or_create(request):
         return Response(serializer.data)
     
     elif request.method == 'POST':
-        # Existing logic for creating a reservation
         product_id = request.data.get('product')
         start_date = request.data.get('start_date')
         end_date = request.data.get('end_date')
-
         start_date_obj = datetime.strptime(start_date, '%Y-%m-%d').date()
         end_date_obj = datetime.strptime(end_date, '%Y-%m-%d').date()
 

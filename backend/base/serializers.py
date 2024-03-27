@@ -1,23 +1,14 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Product
-from .models import Reservation
+from .models import Product, Reservation, User, Review
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import Product, Order, OrderItem, Review
+
 
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model=Product
         fields='__all__'
-
-class ReservationSerializer(serializers.ModelSerializer):
-    start_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d",])
-    end_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d",])
-
-    class Meta:
-        model = Reservation
-        fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(read_only=True)
@@ -40,6 +31,16 @@ class UserSerializer(serializers.ModelSerializer):
             name = obj.email
 
         return name
+
+class ReservationSerializer(serializers.ModelSerializer):
+    start_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d",])
+    end_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d",])
+    user = UserSerializer(read_only=True)
+    product = ProductSerializer(read_only=True)
+
+    class Meta:
+        model = Reservation
+        fields =  fields = ['id', 'user', 'product', 'start_date', 'end_date', 'created_at']
     
 class UserSerializerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only=True)
