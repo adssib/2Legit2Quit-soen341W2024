@@ -48,7 +48,9 @@ class ReservationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reservation
-        fields =  fields = ['id', 'user', 'product', 'start_date', 'end_date', 'created_at']
+        fields = ['id', 'user', 'product', 'start_date', 'end_date', 'created_at',
+                  'arrived_location', 'provided_license', 'provided_credit_card',
+                  'signed_agreement', 'payment_received']
     
 class UserSerializerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only=True)

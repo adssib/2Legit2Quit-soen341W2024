@@ -80,6 +80,13 @@ class Reservation(models.Model):
     end_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+        # Fields for tracking check-in process
+    arrived_location = models.BooleanField(default=False)
+    provided_license = models.BooleanField(default=False)
+    provided_credit_card = models.BooleanField(default=False)
+    signed_agreement = models.BooleanField(default=False)
+    payment_received = models.BooleanField(default=False)
+    
     def __str__(self):
         product_name = self.product.name if self.product else "Unknown Product"
         
