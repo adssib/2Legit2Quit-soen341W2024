@@ -80,3 +80,14 @@ class Reservation(models.Model):
         product_name = self.product.name if self.product else "Unknown Product"
         
         return f"{product_name} from {self.start_date} to {self.end_date}"
+
+class Payment(models.Model):
+    card_name = models.CharField(max_length=255)
+    card_number = models.CharField(max_length=255)  # Store the masked number
+    exp_month = models.CharField(max_length=2)
+    exp_year = models.CharField(max_length=4)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateField()
+
+    def __str__(self):
+        return f"{self.card_name} - {self.date}"

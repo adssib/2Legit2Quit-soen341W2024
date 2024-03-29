@@ -1,22 +1,39 @@
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function PaymentScreen() {
+    const [transactions, setTransactions] = useState([]);
     const [cardName, setCardName] = useState('');
     const [cardNumber, setCardNumber] = useState('');
     const [expMonth, setExpMonth] = useState('');
     const [expYear, setExpYear] = useState('');
     const [cvv, setCvv] = useState('');
+    const [amount, setAmount] = useState('');
     const navigate = useNavigate();
 
     const submitHandler = (e) => {
         e.preventDefault();
-        // TODO: Add your payment processing logic here
-        console.log({ cardName, cardNumber, expMonth, expYear, cvv });
-        alert('Payment info submitted');
-        navigate('/'); // Redirect to the homepage
+        const newTransaction = {
+            cardName,
+            cardNumber: cardNumber.replace(/.(?=.{4})/g, '*'), // Mask all but the last four digits
+            expMonth,
+            expYear,
+            cvv,
+            amount,
+            date: new Date().toISOString().slice(0, 10) // Store only the date part
+        };
+
+        
+        setTransactions([...transactions, newTransaction]);
+        console.log("Payment Details:", newTransaction);
+        // Here you would typically send this data to your backend for processing
+        alert('Payment information stored temporarily.');
+        navigate('/'); // Redirect to the homepage or to a confirmation page
     };
+
+    
 
     return (
         <Container>
@@ -84,10 +101,43 @@ function PaymentScreen() {
                             />
                         </Form.Group>
 
-                        <Button type="submit" variant="primary">
-                            Submit Payment
-                        </Button>
+                        <Form.Group controlId="amount">
+                            <Form.Label>Amount</Form.Label>
+                            <Form.Control
+                                type="number"
+                                placeholder="Enter amount"
+                                value={amount}
+                                onChange={(e) => setAmount(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
+
+                        <Button type="submit" variant="primary">Submit Payment</Button>
                     </Form>
+
+                    {/* Transaction Table */}
+                    {transactions.length > 0 && (
+                        <Table striped bordered hover className="mt-4">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Card Number</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {transactions.map((transaction, index) => (
+                                    <tr key={index}>
+                                        <td>{transaction.cardName}</td>
+                                        <td>{transaction.cardNumber}</td>
+                                        <td>${transaction.amount}</td>
+                                        <td>{transaction.date}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    )}
                 </Col>
             </Row>
         </Container>

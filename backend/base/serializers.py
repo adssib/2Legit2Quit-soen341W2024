@@ -2,7 +2,8 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Product, Reservation, User, Review
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from rest_framework import serializers
+from .models import Payment
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -59,3 +60,9 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = '__all__'
         read_only_fields = ('user')
+
+
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = '__all__'

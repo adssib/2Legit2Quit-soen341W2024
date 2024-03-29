@@ -1,7 +1,7 @@
 import React, { Children }  from 'react'
 import { Form, Button, Row, Col, Container } from 'react-bootstrap';
 
-function FromContainer({children}) {
+function FormContainer({children}) {
          
       return (
 
@@ -18,4 +18,4 @@ function FromContainer({children}) {
       
 }
 
-export default FromContainer
+export default FormContainer

@@ -38,7 +38,7 @@ def reservation_list_or_create(request):
         if serializer.is_valid():
             serializer.save(user=request.user)
 
-            generate_rental_agreement_pdf_and_send_email(file_path, request.user, Reservation)
+           # generate_rental_agreement_pdf_and_send_email(file_path, request.user, Reservation)
 
             return Response(serializer.data, status=201)
         else:

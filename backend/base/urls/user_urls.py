@@ -1,6 +1,7 @@
 from django.urls import path
 from base.views import user_views as views
-
+from django.contrib import admin
+from django.urls import include, path
 
 urlpatterns = [
     path('login/', views.MyTokenObtainPairView.as_view(),
@@ -17,4 +18,6 @@ urlpatterns = [
     path('update/<str:pk>/', views.updateUser, name='user-update'),
 
     path('delete/<str:pk>/', views.deleteUser, name='user-delete'),
+    
+
 ]
