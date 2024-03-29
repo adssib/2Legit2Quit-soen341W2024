@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from django.conf import settings
 
 
 class Product(models.Model):
@@ -80,3 +82,11 @@ class Reservation(models.Model):
         product_name = self.product.name if self.product else "Unknown Product"
         
         return f"{product_name} from {self.start_date} to {self.end_date}"
+class Payment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    card_number = models.CharField(max_length=16)  # Mock; not for real payments.
+    amount_paid = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Payment {self.id} by {self.user.username}"

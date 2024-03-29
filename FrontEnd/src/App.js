@@ -25,6 +25,8 @@ import UserListScreen from './screens/UserListScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 
+import PaymentScreen from './screens/PaymentScreen';
+
 function App() {
   return (
     <Router>
@@ -45,6 +47,8 @@ function App() {
               <Route path='/cart' element={<CartScreen/>} />
               <Route path='/search/:keyword' element={<SearchScreen/>} />
               <Route path="/reserve" element={<ReservationForm />} />
+
+              <Route path="/payment" element={<PaymentScreen />} />
 
               <Route path="/admin/userlist" element={<UserListScreen />} />
               <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />

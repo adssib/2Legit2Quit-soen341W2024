@@ -1,7 +1,7 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 from base.views import product_views as views
-from base.urls import product_urls
+from backend.base.urls.urls import product_urls
 
 class TestProductUrls(SimpleTestCase):
 

@@ -6,18 +6,23 @@ function CartScreen() {
     const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
+        console.log('Fetching cart items from localStorage');
         // Assuming you're storing cart items in local storage under 'cartItems'
         const storedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+        console.log('Stored Cart Items:', storedCartItems);
         if (storedCartItems) {
             setCartItems(storedCartItems);
         }
     }, []);
 
     const removeFromCartHandler = (id) => {
+        console.log(`Removing item with id: ${id}`);
         // Implement removing from cart logic
         const updatedCartItems = cartItems.filter(item => item._id !== id);
+        console.log('Updated Cart Items:', updatedCartItems);
         setCartItems(updatedCartItems);
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+
     };
 
     return (
