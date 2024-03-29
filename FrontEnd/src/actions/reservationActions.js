@@ -1,5 +1,13 @@
 import axios from 'axios';
 
+import {
+    RESERVATION_DETAILS_REQUEST,
+    RESERVATION_DETAILS_SUCCESS,
+    RESERVATION_DETAILS_FAIL,
+    UPDATE_CHECKIN_PROCESS_REQUEST,
+    UPDATE_CHECKIN_PROCESS_SUCCESS,
+    UPDATE_CHECKIN_PROCESS_FAIL
+} from '../constants/reservationActionTypes';
 
 import { USER_LOGIN_SUCCESS } from '../constants/userConstants';
 
@@ -72,6 +80,68 @@ export const listReservations = () => async (dispatch, getState) => {
             payload: error.response && error.response.data.message
                 ? error.response.data.message
                 : error.message,
+        });
+    }
+};
+
+
+
+export const getReservationDetails = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: RESERVATION_DETAILS_REQUEST });
+
+        const { userLogin: { userInfo } } = getState();
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        };
+
+        const { data } = await axios.get(`/api/reservations/${id}`, config);
+
+        dispatch({
+            type: RESERVATION_DETAILS_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: RESERVATION_DETAILS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        });
+    }
+};
+
+export const updateCheckInProcess = (id, checkInData) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: UPDATE_CHECKIN_PROCESS_REQUEST });
+
+        const { userLogin: { userInfo } } = getState();
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        };
+
+        const { data } = await axios.post(`/api/reservations/${id}/check-in/`, checkInData, config);
+
+        dispatch({
+            type: UPDATE_CHECKIN_PROCESS_SUCCESS,
+            payload: data,
+        });
+    } catch (error) {
+        dispatch({
+            type: UPDATE_CHECKIN_PROCESS_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
         });
     }
 };
