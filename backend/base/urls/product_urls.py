@@ -14,4 +14,6 @@ urlpatterns = [
 
     path('update/<str:pk>/', views.updateProduct, name="product-update"),
     path('delete/<str:pk>/', views.deleteProduct, name="product-delete"),
+    path('branch/<int:branch_id>/', views.getProductsByBranch, name='products-by-branch'),
+
 ]

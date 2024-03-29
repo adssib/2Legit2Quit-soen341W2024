@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { reservationCreateReducer, reservationListReducer } from './reducers/reservationCreateReducer'; 
+import { branchListReducer } from './reducers/branchReducers';
 
 import {
   productDetailsReducer,
@@ -20,6 +21,7 @@ import {
 } from './reducers/userReducers';
 
 const reducer = combineReducers({
+  branchList: branchListReducer,
   productList: productListReducer,
   productDetails: productDetailsReducer,
   productDelete: productDeleteReducer,
