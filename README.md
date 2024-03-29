@@ -18,8 +18,6 @@ We are going to use a variety of front and backend frameworks to develop this pr
 # extra links
 [Link for Meeting Minutes Spread Sheet](https://liveconcordia-my.sharepoint.com/:x:/g/personal/h_aitidi_live_concordia_ca/EZLWG--Jm5dPusCuZGsbBJkBjbDpXm2QouSt52PzoB9_5A?e=t7JhIi) 
 
-SPRINT 3  MEMBER CONTRIBUTIONS: https://docs.google.com/document/d/1ry0mjI2Omq0Cfe_bz-awUWo0tIPPZQ9d76VwlAa4LPc/edit?usp=sharing
-
 [Link for Members Contributions](https://1drv.ms/x/s!ApXMEtybGLIPmQ2fBPMcKYCOQS1C?e=nM8m03)
 
 
