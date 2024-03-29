@@ -1,16 +1,24 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Product, Reservation, User, Review
+from .models import Product, Reservation, User, Review, BranchAddress
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import serializers
 from .models import Payment
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class BranchAddressSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Product
-        fields='__all__'
+        model = BranchAddress
+        fields = '__all__'
 
+class ProductSerializer(serializers.ModelSerializer):
+    branch = BranchAddressSerializer(read_only=True)  # Include this line if you want to nest branch address details
+
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+        
 class UserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(read_only=True)
     _id = serializers.SerializerMethodField(read_only=True)

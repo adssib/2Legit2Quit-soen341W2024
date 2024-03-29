@@ -5,12 +5,19 @@ import Product from '../components/Product'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import { listProducts } from '../actions/productActions'
+import { listBranches } from '../actions/branchActions'; 
 
 
 function HomeScreen() {
   const dispatch=useDispatch()
+  const branchList = useSelector((state) => state.branchList)
+  
   const productList=useSelector(state=>state.productList)
   const {error,loading,products}=productList
+
+  useEffect(() => {
+    dispatch(listBranches());
+}, [dispatch]);
 
   useEffect(()=>{
     dispatch(listProducts())

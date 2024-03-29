@@ -1,7 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class BranchAddress(models.Model):
+    # Add a unique identifier or name for the branch if desired
+    branch_name = models.CharField(max_length=200, unique=True, null=True, blank=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    city = models.CharField(max_length=200, null=True, blank=True)
+    postalCode = models.CharField(max_length=200, null=True, blank=True)
+    country = models.CharField(max_length=200, null=True, blank=True)
+    _id = models.AutoField(primary_key=True, editable=False)
 
+    def __str__(self):
+        return self.branch_name or self.address
+    
 class Product(models.Model):
     user= models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name= models.CharField(max_length=200, null=True, blank=True)
@@ -15,7 +26,8 @@ class Product(models.Model):
     countInStock=models.IntegerField(null=True, blank=True, default=0)
     createdAt=models.DateTimeField(auto_now_add=True)
     _id=models.AutoField(primary_key=True, editable=False)
-
+    address = models.CharField(max_length=255, null=True, blank=True)
+    branch = models.ForeignKey(BranchAddress, on_delete=models.SET_NULL, null=True, related_name='products')
 
     def __str__(self):
         return self.name
@@ -58,16 +70,8 @@ class OrderItem(models.Model):
     def __str__(self):
         return str(self.name)
     
-class BranchAddress(models.Model):
-    order = models.OneToOneField(Order, on_delete=models.CASCADE, null=True, blank=True)
-    address=models.CharField(max_length=200, null=True, blank=True)
-    city=models.CharField(max_length=200, null=True, blank=True)
-    postalCode=models.CharField(max_length=200, null=True, blank=True)
-    country=models.CharField(max_length=200, null=True, blank=True)
-    _id=models.AutoField(primary_key=True, editable=False)
 
-    def __str__(self):
-        return str(self.address)
+
     
 class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

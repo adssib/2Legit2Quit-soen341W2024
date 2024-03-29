@@ -3,7 +3,16 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import LoginScreen from './screens/LoginScreen';
+<<<<<<< HEAD
 import ReservationListScreen from './screens/ReservationListScreen';
+=======
+import ReservationListScreen from './screens/ReservationListScreen'; 
+
+
+
+import BranchProducts from './components/BranchProducts';
+
+>>>>>>> 8e1cb89d6ad7eaea88fc5570568cd2de2520bbca
 import ReservationForm from './components/ReservationForm';
 import CartScreen from './screens/CartScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -48,8 +57,17 @@ function App() {
               
               <Route path='/admin/productlist' element={<ProductListScreen/>} />
               
+<<<<<<< HEAD
               <Route path='/admin/product/:id/edit' element={<ProductEditScreen/>} />
           </Routes>
+=======
+              <Route path='/admin/product/:id/edit' element={<ProductEditScreen/>} />   
+
+              <Route path="/branch/:branchId" element={<BranchProducts />} />
+
+
+            </Routes>
+>>>>>>> 8e1cb89d6ad7eaea88fc5570568cd2de2520bbca
         </Container>
       </main>
       <Footer/>
