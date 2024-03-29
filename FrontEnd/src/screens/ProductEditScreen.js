@@ -24,6 +24,9 @@ function ProductEditScreen() {
     const [countInStock, setCountInStock] = useState(0)
     const [description, setDescription] = useState('')
     const [uploading, setUploading] = useState(false)
+    const [address, setAddress] = useState('');
+    const [branches, setBranches] = useState([]); // Holds the list of branches
+
 
     const dispatch = useDispatch()
 
@@ -37,7 +40,7 @@ function ProductEditScreen() {
     useEffect(() => {
         if (successUpdate) {
             dispatch({ type: PRODUCT_UPDATE_RESET });
-            navigate('/admin/productlist'); // Replace history.push with navigate
+            navigate('/admin/productlist');
         } else {
             if (!product.name || product._id !== Number(productId)) {
                 dispatch(listProductDetails(productId));
@@ -49,9 +52,12 @@ function ProductEditScreen() {
                 setCategory(product.category);
                 setCountInStock(product.countInStock);
                 setDescription(product.description);
+                setAddress(product.address); // Add this line
+                
             }
         }
-    }, [dispatch, navigate, productId, product, successUpdate]); // Update dependency array
+    }, [dispatch, navigate, productId, product, successUpdate]);
+    
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -63,7 +69,8 @@ function ProductEditScreen() {
             brand,
             category,
             countInStock,
-            description
+            description,
+            address
         }))
     }
 
@@ -204,6 +211,17 @@ function ProductEditScreen() {
                                 >
                                 </Form.Control>
                             </Form.Group>
+
+                            <Form.Group controlId='address'>
+    <Form.Label>Address</Form.Label>
+    <Form.Control
+        type='text'
+        placeholder='Enter address'
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+    ></Form.Control>
+</Form.Group>
+
 
 
                             <Button type='submit' variant='primary'>

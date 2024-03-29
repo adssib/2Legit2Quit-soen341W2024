@@ -247,7 +247,7 @@ def generate_rental_agreement_pdf(file_path):
     # Save the PDF
     c.save()
 # Specify the file path
-file_path = "../static/receipt/rental_agreement.pdf"
+file_path = "./static/receipt/rental_agreement.pdf"
 
 # Generate the PDF
 generate_rental_agreement_pdf(file_path)

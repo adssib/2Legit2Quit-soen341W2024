@@ -6,6 +6,9 @@ import LoginScreen from './screens/LoginScreen';
 import ReservationListScreen from './screens/ReservationListScreen'; 
 
 
+
+import BranchProducts from './components/BranchProducts';
+
 import ReservationForm from './components/ReservationForm';
 import CartScreen from './screens/CartScreen';
 import ProfileScreen from './screens/ProfileScreen';
@@ -52,6 +55,9 @@ function App() {
               <Route path='/admin/productlist' element={<ProductListScreen/>} />
               
               <Route path='/admin/product/:id/edit' element={<ProductEditScreen/>} />   
+
+              <Route path="/branch/:branchId" element={<BranchProducts />} />
+
 
             </Routes>
         </Container>
