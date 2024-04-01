@@ -5,6 +5,8 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { useNavigate } from 'react-router-dom'; 
 import { Table, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import axios from 'axios'; 
 
 function ReservationListScreen() {
     const dispatch = useDispatch();
@@ -24,16 +26,33 @@ function ReservationListScreen() {
         }
     }, [dispatch, navigate, userInfo]);
 
-    //CHANGE THE BUTTON FUNCTIONALITY HERE
-    const handleCheckIn = (reservationId) => {
-        console.log(`Checking in reservation with ID: ${reservationId}`);
-        
+    const handleReservationDetail = (reservationId) => {
+        navigate(`/api/reservations/${reservationId}`);
     };
 
-    const handleCheckOut = (reservationId) => {
-        console.log(`Checking out reservation with ID: ${reservationId}`);
-        
+    const handleDeleteReservation = async (reservationId) => {
+        try {
+            // Send a DELETE request to the backend API
+            const response = await axios.delete(`/api/reservations/${reservationId}/delete`, {
+                headers: {
+                    Authorization: `Bearer ${userInfo.token}` // Include authorization token if needed
+                }
+            });
+            // Handle successful deletion
+            console.log('Reservation deleted successfully');
+            
+            // Dispatch the listReservations action again to refresh the reservation list
+            dispatch(listReservations());
+    
+            // You may also show a success message to the user
+            
+        } catch (error) {
+            // Handle errors
+            console.error('Error deleting reservation:', error);
+        }
     };
+    
+      
 
     return (
         <div>
@@ -52,13 +71,13 @@ function ReservationListScreen() {
                     <tbody>
                         {reservations.map(reservation => (
                             <tr key={reservation._id}>
-                                <td>{reservation.user ? reservation.user.username : 'Unknown User'}</td> {/* Accessing username property */}
-                                <td>{reservation.product ? reservation.product.name : 'Unknown Product'}</td> {/* Accessing name property */}
+                                <td>{reservation.user ? reservation.user.username : 'Unknown User'}</td> 
+                                <td>{reservation.product ? reservation.product.name : 'Unknown Product'}</td> 
                                 <td>{reservation.start_date}</td>
                                 <td>{reservation.end_date}</td>
                                 <td>
-                                    <Button variant="success" className="mr-2" onClick={() => handleCheckIn(reservation._id)}>Check In</Button> 
-                                    <Button variant="warning" onClick={() => handleCheckOut(reservation._id)}>Check Out</Button> 
+                                    <Link to={`/admin/reservation/${reservation.id}`}>See More</Link>
+                                    <Button variant="danger" onClick={() => handleDeleteReservation(reservation.id)}>Delete</Button> 
                                 </td>
                             </tr>
                         ))}

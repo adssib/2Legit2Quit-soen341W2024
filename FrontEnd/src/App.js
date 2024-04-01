@@ -25,6 +25,8 @@ import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import { Link } from 'react-router-dom';
+import ReservationDetailScreen from './screens/ReservationDetailScreen';
+
 function App() {
   return (
     <Router>
@@ -34,6 +36,7 @@ function App() {
         <Link to="/payment">Go to Payment</Link>
           <Routes>
               <Route path='/admin/reservationlist' element={<ReservationListScreen />} />
+              <Route path='/admin/reservation/:id' element={<ReservationDetailScreen />} />
               <Route path='/' element={<HomeScreen />} /> {/* Removed exact as it's not needed with react-router-dom v6 */}
               <Route path='/product/:id' element={<ProductScreen/>} />
               <Route path='/start-reservation' element={<ReservationStart />} />

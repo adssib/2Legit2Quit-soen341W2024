@@ -28,10 +28,7 @@ urlpatterns = [
     path('api/orders/', include('base.urls.order_urls')),
     path('api/payments/', include('base.urls.payment_urls')),
     path('api/reservations/', include('base.urls.reservation_urls')),
-    # Add this line in urls.py under urlpatterns
-    path('api/branches/', include('base.urls.branch_urls')),
-
-    
+    path('api/branches/', include('base.urls.branch_urls')), 
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

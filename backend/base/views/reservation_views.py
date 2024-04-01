@@ -1,10 +1,12 @@
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from datetime import datetime
 from base.models import Product, Reservation
 from base.serializers import ReservationSerializer
+from django.shortcuts import get_object_or_404
 from base.generate_contract import generate_rental_agreement_pdf_and_send_email
+from rest_framework import status
 
 file_path = "../static/receipt/rental_agreement.pdf"
 
@@ -43,3 +45,30 @@ def reservation_list_or_create(request):
             return Response(serializer.data, status=201)
         else:
             return Response(serializer.errors, status=400)
+
+@api_view(['GET', 'PUT'])
+@permission_classes([IsAuthenticated, IsAdminUser])
+def single_reservation_detail(request, reservation_id):
+    try:
+        reservation = get_object_or_404(Reservation, pk=reservation_id)
+        if request.method == 'GET':
+            serializer = ReservationSerializer(reservation)
+            return Response(serializer.data)
+        elif request.method == 'PUT':
+            serializer = ReservationSerializer(reservation, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=400)
+    except Exception as e:
+        return Response({"error": str(e)}, status=400)
+    
+@api_view(['DELETE'])
+def delete_reservation(request, reservation_id):
+    try:
+        reservation = Reservation.objects.get(id=reservation_id)
+    except Reservation.DoesNotExist:
+        return Response({"error": "Reservation not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    reservation.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
