@@ -10,11 +10,8 @@ function ReservationDetailForm({ reservation }) {
             <p>Start Date: {reservation.start_date}</p>
             <p>End Date: {reservation.end_date}</p>
             <p>User: {reservation.user && reservation.user.name}</p>
-            <p>
-                Product: {reservation.product && (
-                    <Link to={`/products/${reservation.product._id}`}>{reservation.product.name}</Link>
-                )}
-            </p>
+            <p>Product: {reservation.product && reservation.product.name}</p>
+
             {/* Check-in questions */}
             <h4>Check-in</h4>
             <Form.Check type="radio" label="Did the User arrive at the location?" />
