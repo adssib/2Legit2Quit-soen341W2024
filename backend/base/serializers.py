@@ -49,23 +49,29 @@ class UserSerializer(serializers.ModelSerializer):
         return obj.is_staff
 
     def get_name(self, obj):
-        name = obj.first_name
-        if name == '':
+        # Concatenate first name and last name
+        name = f"{obj.first_name} {obj.last_name}".strip()
+        if not name:
             name = obj.email
-
         return name
 
 class ReservationSerializer(serializers.ModelSerializer):
     start_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d",])
     end_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d",])
     user = UserSerializer(read_only=True)
-    product = ProductSerializer()
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    product_name = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Reservation
-        fields = ['id', 'user', 'product', 'start_date', 'end_date', 'created_at',
-                  'UserArrivedAtLocation', 'UserInspectedTheCar', 'UserProvidedDriverLicense',
-                  'UserProvidedCreditCard', 'UserSignedAgreement', 'UserReturnedTheCar', 'NoDamages']
+        fields = [
+            'id', 'user', 'product', 'product_name', 'start_date', 'end_date', 'created_at',
+            'UserArrivedAtLocation', 'UserInspectedTheCar', 'UserProvidedDriverLicense',
+            'UserProvidedCreditCard', 'UserSignedAgreement', 'UserReturnedTheCar', 'NoDamages'
+        ]
+
+    def get_product_name(self, obj):
+        return obj.product.name if obj.product else None
     
 class UserSerializerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only=True)

@@ -72,7 +72,7 @@ function ReservationListScreen() {
                         {reservations.map(reservation => (
                             <tr key={reservation._id}>
                                 <td>{reservation.user ? reservation.user.username : 'Unknown User'}</td> 
-                                <td>{reservation.product ? reservation.product.name : 'Unknown Product'}</td> 
+                                <td>{reservation.product_name || 'Unknown Product'}</td>
                                 <td>{reservation.start_date}</td>
                                 <td>{reservation.end_date}</td>
                                 <td>

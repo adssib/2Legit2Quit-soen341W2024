@@ -5,7 +5,8 @@ import {
     CREATE_RESERVATION_RESET,
     RESERVATION_LIST_REQUEST,
     RESERVATION_LIST_SUCCESS,
-    RESERVATION_LIST_FAIL
+    RESERVATION_LIST_FAIL,
+    RESERVATION_CREATE_RESET
 } from '../constants/reservationActionTypes';
 
 const initialState = {
@@ -17,14 +18,19 @@ const initialState = {
 
 export const reservationCreateReducer = (state = initialState, action) => {
     switch (action.type) {
+        
         case CREATE_RESERVATION_REQUEST:
             return { ...state, loading: true, error: null };
         case CREATE_RESERVATION_SUCCESS:
             return { loading: false, success: true, reservation: action.payload, error: null };
         case CREATE_RESERVATION_FAIL:
             return { loading: false, error: action.payload, success: false };
-        case CREATE_RESERVATION_RESET:
-            return initialState;
+            case RESERVATION_CREATE_RESET:
+                return {
+                  ...state,
+                  success: false, // Reset success state
+                  // Reset any other relevant state properties as needed
+                };
         default:
             return state;
     }

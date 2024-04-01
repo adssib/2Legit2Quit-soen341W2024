@@ -22,6 +22,7 @@ import {
 
 import {
   reservationDetailsReducer,
+  reservationReducer,
   // Add other reservation-related reducers if available
 } from './reducers/reservationReducers';
 
@@ -36,6 +37,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   reservationCreate: reservationCreateReducer,
   reservationList: reservationListReducer, 
+  reservationReducer: reservationReducer,
   userDetails: userDetailsReducer,
   userDelete: userDeleteReducer,
   userUpdate: userUpdateReducer,

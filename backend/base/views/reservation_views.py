@@ -44,6 +44,7 @@ def reservation_list_or_create(request):
 
             return Response(serializer.data, status=201)
         else:
+            print(serializer.errors)
             return Response(serializer.errors, status=400)
 
 @api_view(['GET', 'PUT'])

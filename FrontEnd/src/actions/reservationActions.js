@@ -6,7 +6,8 @@ import {
     RESERVATION_DETAILS_FAIL,
     UPDATE_CHECKIN_PROCESS_REQUEST,
     UPDATE_CHECKIN_PROCESS_SUCCESS,
-    UPDATE_CHECKIN_PROCESS_FAIL
+    UPDATE_CHECKIN_PROCESS_FAIL,
+    RESERVATION_CREATE_RESET
 } from '../constants/reservationActionTypes';
 
 import { USER_LOGIN_SUCCESS } from '../constants/userConstants';
@@ -21,6 +22,7 @@ export const CREATE_RESERVATION_RESET = 'CREATE_RESERVATION_RESET';
 export const RESERVATION_LIST_REQUEST = 'RESERVATION_LIST_REQUEST';
 export const RESERVATION_LIST_SUCCESS = 'RESERVATION_LIST_SUCCESS';
 export const RESERVATION_LIST_FAIL = 'RESERVATION_LIST_FAIL';
+
 
 
 export const createReservation = (reservationData) => async (dispatch, getState) => {
@@ -153,3 +155,8 @@ export const updateCheckInProcess = (id, checkInData) => async (dispatch, getSta
 export const createReservationRequest = () => ({
     type: actionTypes.CREATE_RESERVATION_REQUEST
 });
+
+export const resetReservationSuccess = () => (dispatch) => {
+    console.log('Dispatching RESERVATION_CREATE_RESET');
+    dispatch({ type: RESERVATION_CREATE_RESET });
+};

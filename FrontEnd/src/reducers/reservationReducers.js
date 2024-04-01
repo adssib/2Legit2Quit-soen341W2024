@@ -4,14 +4,16 @@ import {
     RESERVATION_DETAILS_FAIL,
     UPDATE_CHECKIN_PROCESS_REQUEST,
     UPDATE_CHECKIN_PROCESS_SUCCESS,
-    UPDATE_CHECKIN_PROCESS_FAIL
+    UPDATE_CHECKIN_PROCESS_FAIL,
+    RESERVATION_CREATE_RESET
 } from '../constants/reservationActionTypes';
 import * as actionTypes from '../constants/actionTypes';
 
 const initialState = {
     loading: false,
     error: null,
-    reservation: {}
+    reservation: {},
+    success: false, // Make sure to include this if you're using it in your logic
 };
 
 export const reservationDetailsReducer = (state = initialState, action) => {
@@ -41,7 +43,7 @@ export const updateCheckInProcessReducer = (state = { success: false }, action) 
 };
 
 
-const reservationReducer = (state = initialState, action) => {
+export const reservationReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.CREATE_RESERVATION_REQUEST:
             // Set loading to true to indicate that the reservation creation is in progress
@@ -63,6 +65,13 @@ const reservationReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload, // Assuming action.payload contains the error message
             };
+
+            // In your reservation reducer
+        case RESERVATION_CREATE_RESET:
+             return { 
+                ...state,
+                loading: false, error: null, success: false };
+
         default:
             return state;
     }

@@ -3,11 +3,14 @@ import { Button, Form, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import products from '../products';
 import { useSelector, useDispatch } from 'react-redux';
-import { createReservation } from '../actions/reservationActions';
+import { createReservation, resetReservationSuccess } from '../actions/reservationActions';
+import { useNavigate } from 'react-router-dom';
+
 
 function ReservationStart() {
     const dispatch = useDispatch();
     const location = useLocation();
+    const navigate = useNavigate();
     const selectedProductId = location.state?.selectedProductId;
 
     // States for form fields
@@ -27,7 +30,8 @@ function ReservationStart() {
         }
     }, [selectedProductId]);
 
-   
+    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const formattedStartDate = startDate.split('T')[0];
@@ -57,7 +61,18 @@ function ReservationStart() {
             end_date: formattedEndDate,
         }));
     };
-
+    useEffect(() => {
+        if (success ) {
+            dispatch(resetReservationSuccess());
+            navigate('/payment', {
+                state: {
+                    productId: selectedCar,
+                    startDate: startDate,
+                    endDate: endDate,
+                },
+            });
+        }
+    }, [success, navigate, selectedCar, startDate, endDate]);
     return (
         <Container>
             <h1>Start a Reservation</h1>

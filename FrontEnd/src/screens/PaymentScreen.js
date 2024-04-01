@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Container, Row, Col, Table } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { resetReservationSuccess } from '../actions/reservationActions';
+import { useDispatch } from 'react-redux';
 
 function PaymentScreen() {
+    const dispatch = useDispatch(); 
+    const location = useLocation();
+    const { productId, startDate, endDate } = location.state || {};
+
     const [transactions, setTransactions] = useState([]);
     const [cardName, setCardName] = useState('');
     const [cardNumber, setCardNumber] = useState('');
@@ -13,23 +19,52 @@ function PaymentScreen() {
     const [amount, setAmount] = useState('');
     const navigate = useNavigate();
 
+    // Fetch product details and calculate the amount
+    useEffect(() => {
+        const fetchProductDetails = async () => {
+            try {
+                const { data } = await axios.get(`/api/products/${productId}`);
+                const days = calculateDaysBetweenDates(startDate, endDate);
+                const amountDue = days * parseFloat(data.price); // Assuming price is directly on data
+                setAmount(amountDue);
+            } catch (error) {
+                console.error("Failed to fetch product details", error);
+            }
+        };
+
+        fetchProductDetails();
+    }, [productId, startDate, endDate]);
+
+    // Cleanup function to reset the reservation success state when unmounting
+    useEffect(() => {
+        return () => {
+            dispatch(resetReservationSuccess());
+        };
+    }, [dispatch]);
+
     const submitHandler = (e) => {
         e.preventDefault();
-        const newTransaction = {
+        const paymentInfo = {
             cardName,
-            cardNumber: cardNumber.replace(/.(?=.{4})/g, '*'), // Mask all but the last four digits
+            cardNumber, // Consider masking this for display
             expMonth,
             expYear,
             cvv,
-            amount,
-            date: new Date().toISOString().slice(0, 10) // Store only the date part
+            amount
         };
+        // Construct reservation info from state passed via navigate
+        const reservationInfo = {
+            productId,
+            startDate,
+            endDate
+        };
+        // Navigate to confirmation screen with state
+        navigate('/confirmation', { state: { reservationInfo, paymentInfo } });
+    };
+    
 
-        
-        setTransactions([...transactions, newTransaction]);
-        console.log("Payment Details:", newTransaction);
-        // Here you would typically send this data to your backend for processing
-        navigate('/'); // Redirect to the homepage or to a confirmation page
+    const handleGoBack = () => {
+        navigate(-1);
     };
 
     
@@ -38,6 +73,9 @@ function PaymentScreen() {
         <Container>
             <Row className="justify-content-md-center">
                 <Col xs={12} md={6}>
+                    
+                <button onClick={handleGoBack}>Go Back</button>
+
                     <h1>Payment Information</h1>
                     <Form onSubmit={submitHandler}>
                         <Form.Group controlId="cardName">
@@ -99,17 +137,16 @@ function PaymentScreen() {
                                 required
                             />
                         </Form.Group>
+                        <Form.Group controlId="Cost">
+  Renting Cost for {calculateDaysBetweenDates(startDate, endDate)} day period
+  <Form.Control
+    type="text"
+    placeholder="Amount will be calculated"
+    value={typeof amount === 'number' ? `$${amount.toFixed(2)} for ${calculateDaysBetweenDates(startDate, endDate)} days + 500$ deposit= $${(amount + 500).toFixed(2)}` : 'Calculating...'}
+    readOnly 
+  />
+</Form.Group>
 
-                        <Form.Group controlId="amount">
-                            <Form.Label>Amount</Form.Label>
-                            <Form.Control
-                                type="number"
-                                placeholder="Enter amount"
-                                value={amount}
-                                onChange={(e) => setAmount(e.target.value)}
-                                required
-                            />
-                        </Form.Group>
 
                         <Button type="submit" variant="primary">Submit Payment</Button>
                     </Form>
@@ -144,3 +181,11 @@ function PaymentScreen() {
 }
 
 export default PaymentScreen;
+
+function calculateDaysBetweenDates(startDate, endDate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const diffTime = Math.abs(end - start);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+}

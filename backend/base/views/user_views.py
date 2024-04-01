@@ -49,19 +49,18 @@ def registerUser(request):
 @permission_classes([IsAuthenticated])
 def updateUserProfile(request):
     user = request.user
-    serializer = UserSerializerWithToken(user, many=False)
-
     data = request.data
-    user.first_name = data['name']
+    user.first_name = data.get('firstName', user.first_name)
+    user.last_name = data.get('lastName', user.last_name)  # Handle last name update
     user.username = data['email']
     user.email = data['email']
-
-    if data['password'] != '':
+    if data.get('password'):
         user.password = make_password(data['password'])
-
     user.save()
 
+    serializer = UserSerializerWithToken(user, many=False)
     return Response(serializer.data)
+
 
 
 @api_view(['GET'])
@@ -115,3 +114,11 @@ def deleteUser(request, pk):
     return Response('User was deleted')
 
 
+@api_view(['GET'])
+def getUserByEmail(request, email):
+    try:
+        user = User.objects.get(email=email)
+        serializer = UserSerializer(user, many=False)
+        return Response(serializer.data)
+    except User.DoesNotExist:
+        return Response({'detail': 'User not found'}, status=status.HTTP_404_NOT_FOUND)

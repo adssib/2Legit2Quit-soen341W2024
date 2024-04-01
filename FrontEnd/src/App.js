@@ -26,6 +26,7 @@ import ProductEditScreen from './screens/ProductEditScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import { Link } from 'react-router-dom';
 import ReservationDetailScreen from './screens/ReservationDetailScreen';
+import ConfirmationScreen from './screens/ConfirmationScreen';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
       <Header/>
       <main className='py-3'>
         <Container>
-        <Link to="/payment">Go to Payment</Link>
+        
           <Routes>
               <Route path='/' element={<HomeScreen />} />
               <Route path='/product/:id' element={<ProductScreen/>} />
@@ -60,6 +61,7 @@ function App() {
               <Route path='/admin/product/:id/edit' element={<ProductEditScreen/>} />   
 
               <Route path="/branch/:branchId" element={<BranchProducts />} />
+              <Route path='/confirmation' element={<ConfirmationScreen />} />
 
 
             </Routes>
