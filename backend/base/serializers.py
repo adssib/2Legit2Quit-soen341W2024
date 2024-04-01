@@ -59,7 +59,7 @@ class ReservationSerializer(serializers.ModelSerializer):
     start_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d",])
     end_date = serializers.DateField(format="%Y-%m-%d", input_formats=["%Y-%m-%d",])
     user = UserSerializer(read_only=True)
-    product = ProductSerializer(read_only=True)
+    product = ProductSerializer()
 
     class Meta:
         model = Reservation

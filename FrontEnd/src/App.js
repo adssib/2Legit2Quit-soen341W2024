@@ -35,13 +35,13 @@ function App() {
         <Container>
         <Link to="/payment">Go to Payment</Link>
           <Routes>
-              <Route path='/admin/reservationlist' element={<ReservationListScreen />} />
-              <Route path='/admin/reservation/:id' element={<ReservationDetailScreen />} />
-              <Route path='/' element={<HomeScreen />} /> {/* Removed exact as it's not needed with react-router-dom v6 */}
+              <Route path='/' element={<HomeScreen />} />
               <Route path='/product/:id' element={<ProductScreen/>} />
               <Route path='/start-reservation' element={<ReservationStart />} />
               <Route path='/reservation/:id' element={<ReservationDetails />} />
               
+              <Route path='/payment' element={<PaymentScreen />} />
+
               <Route path='/login' element={<LoginScreen/>} />
               <Route path='/register' element={<RegisterScreen/>} />
               <Route path='/profile' element={<ProfileScreen />} />
@@ -54,9 +54,9 @@ function App() {
 
               <Route path="/admin/userlist" element={<UserListScreen />} />
               <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
-              
+              <Route path='/admin/reservationlist' element={<ReservationListScreen />} />
+              <Route path="/admin/reservation/:id" element={<ReservationDetailScreen />} />
               <Route path='/admin/productlist' element={<ProductListScreen/>} />
-              
               <Route path='/admin/product/:id/edit' element={<ProductEditScreen/>} />   
 
               <Route path="/branch/:branchId" element={<BranchProducts />} />

@@ -20,6 +20,11 @@ import {
   userUpdateReducer,
 } from './reducers/userReducers';
 
+import {
+  reservationDetailsReducer,
+  // Add other reservation-related reducers if available
+} from './reducers/reservationReducers';
+
 const reducer = combineReducers({
   branchList: branchListReducer,
   productList: productListReducer,
@@ -36,6 +41,7 @@ const reducer = combineReducers({
   userUpdate: userUpdateReducer,
   userUpdateProfile: userUpdateProfileReducer,
   userList: userListReducer,
+  reservationDetails: reservationDetailsReducer,
 });
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ?
@@ -49,6 +55,12 @@ const initialState = {
     cartItems: cartItemsFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
+
+  reservationDetails: {
+    loading: false,
+    error: null,
+    reservation: {},
+  },
 };
 
 const store = configureStore({

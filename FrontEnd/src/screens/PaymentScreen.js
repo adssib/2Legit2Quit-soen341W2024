@@ -29,7 +29,6 @@ function PaymentScreen() {
         setTransactions([...transactions, newTransaction]);
         console.log("Payment Details:", newTransaction);
         // Here you would typically send this data to your backend for processing
-        alert('Payment information stored temporarily.');
         navigate('/'); // Redirect to the homepage or to a confirmation page
     };
 

@@ -6,6 +6,7 @@ import {
     UPDATE_CHECKIN_PROCESS_SUCCESS,
     UPDATE_CHECKIN_PROCESS_FAIL
 } from '../constants/reservationActionTypes';
+import * as actionTypes from '../constants/actionTypes';
 
 const initialState = {
     loading: false,
@@ -38,3 +39,33 @@ export const updateCheckInProcessReducer = (state = { success: false }, action) 
             return state;
     }
 };
+
+
+const reservationReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case actionTypes.CREATE_RESERVATION_REQUEST:
+            // Set loading to true to indicate that the reservation creation is in progress
+            return {
+                ...state,
+                loading: true,
+            };
+        case actionTypes.CREATE_RESERVATION_SUCCESS:
+            // Handle successful reservation creation
+            return {
+                ...state,
+                loading: false,
+                reservation: action.payload, // Assuming action.payload contains the newly created reservation
+            };
+        case actionTypes.CREATE_RESERVATION_FAIL:
+            // Handle reservation creation failure
+            return {
+                ...state,
+                loading: false,
+                error: action.payload, // Assuming action.payload contains the error message
+            };
+        default:
+            return state;
+    }
+};
+
+export default reservationReducer;

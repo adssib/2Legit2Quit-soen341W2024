@@ -10,6 +10,8 @@ import {
 } from '../constants/reservationActionTypes';
 
 import { USER_LOGIN_SUCCESS } from '../constants/userConstants';
+import * as actionTypes from '../constants/actionTypes';
+
 
 // Action Types
 export const CREATE_RESERVATION_REQUEST = 'CREATE_RESERVATION_REQUEST';
@@ -19,6 +21,7 @@ export const CREATE_RESERVATION_RESET = 'CREATE_RESERVATION_RESET';
 export const RESERVATION_LIST_REQUEST = 'RESERVATION_LIST_REQUEST';
 export const RESERVATION_LIST_SUCCESS = 'RESERVATION_LIST_SUCCESS';
 export const RESERVATION_LIST_FAIL = 'RESERVATION_LIST_FAIL';
+
 
 export const createReservation = (reservationData) => async (dispatch, getState) => {
     try {
@@ -145,3 +148,8 @@ export const updateCheckInProcess = (id, checkInData) => async (dispatch, getSta
         });
     }
 };
+
+// Example action creator using the constants
+export const createReservationRequest = () => ({
+    type: actionTypes.CREATE_RESERVATION_REQUEST
+});
