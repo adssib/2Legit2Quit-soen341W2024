@@ -81,11 +81,13 @@ class Reservation(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
         # Fields for tracking check-in process
-    arrived_location = models.BooleanField(default=False)
-    provided_license = models.BooleanField(default=False)
-    provided_credit_card = models.BooleanField(default=False)
-    signed_agreement = models.BooleanField(default=False)
-    payment_received = models.BooleanField(default=False)
+    UserArrivedAtLocation = models.BooleanField(default=False)
+    UserInspectedTheCar = models.BooleanField(default=False)
+    UserProvidedDriverLicense = models.BooleanField(default=False)
+    UserProvidedCreditCard = models.BooleanField(default=False)
+    UserSignedAgreement = models.BooleanField(default=False)
+    UserReturnedTheCar = models.BooleanField(default=False)
+    NoDamages = models.BooleanField(default=False)
     
     def __str__(self):
         product_name = self.product.name if self.product else "Unknown Product"
@@ -102,3 +104,39 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"{self.card_name} - {self.date}"
+    
+    
+
+class UserAccount(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    def __str__(self):
+        return self.user.username
+
+    def add_funds(self, amount):
+        self.balance += amount
+        self.save()
+
+    def deduct_funds(self, amount):
+        if self.balance >= amount:
+            self.balance -= amount
+            self.save()
+            return True
+        return False
+
+    @staticmethod
+    def deduct_from_user(user, amount):
+        try:
+            user_account = UserAccount.objects.get(user=user)
+            if user_account.balance >= amount:
+                user_account.balance -= amount
+                user_account.save()
+                return True
+        except UserAccount.DoesNotExist:
+            pass
+        return False
+
+    @staticmethod
+    def list_all_payments():
+        return Payment.objects.all()

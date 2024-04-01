@@ -1,24 +1,14 @@
-import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import {  Link, useParams, useNavigate } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import FormContainer from '../components/FormContainer';
+import { listProductDetails, updateProduct } from '../actions/productActions'
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
-<<<<<<< HEAD
-function PaymentScreen() {
-    const [cardName, setCardName] = useState('');
-    const [cardNumber, setCardNumber] = useState('');
-    const [expMonth, setExpMonth] = useState('');
-    const [expYear, setExpYear] = useState('');
-    const [cvv, setCvv] = useState('');
-    const navigate = useNavigate();
-
-    const submitHandler = (e) => {
-        e.preventDefault();
-        // TODO: Add your payment processing logic here
-        console.log({ cardName, cardNumber, expMonth, expYear, cvv });
-        alert('Payment info submitted');
-        navigate('/'); // Redirect to the homepage
-    };
-=======
 
 function ProductEditScreen() {
 
@@ -110,78 +100,67 @@ function ProductEditScreen() {
             setUploading(false)
         }
     }
->>>>>>> 8e1cb89d6ad7eaea88fc5570568cd2de2520bbca
 
     return (
-        <Container>
-            <Row className="justify-content-md-center">
-                <Col xs={12} md={6}>
-                    <h1>Payment Information</h1>
-                    <Form onSubmit={submitHandler}>
-                        <Form.Group controlId="cardName">
-                            <Form.Label>Cardholder's Name</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Name on card"
-                                value={cardName}
-                                onChange={(e) => setCardName(e.target.value)}
-                                required
-                            />
-                        </Form.Group>
+        <div>
+            <Link to='/admin/productlist'>
+                Go Back
+            </Link>
 
-                        <Form.Group controlId="cardNumber">
-                            <Form.Label>Card Number</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Valid card number"
-                                value={cardNumber}
-                                onChange={(e) => setCardNumber(e.target.value)}
-                                required
-                            />
-                        </Form.Group>
+            <FormContainer>
+                <h1>Edit Product</h1>
+                {loadingUpdate && <Loader />}
+                {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
-                        <Row>
-                            <Col md={6}>
-                                <Form.Group controlId="expMonth">
-                                    <Form.Label>Expiration Month</Form.Label>
+                {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message>
+                    : (
+                        <Form onSubmit={submitHandler}>
+
+                            <Form.Group controlId='name'>
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control
+
+                                    type='name'
+                                    placeholder='Enter name'
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group controlId='price'>
+                                <Form.Label>Price</Form.Label>
+                                <Form.Control
+
+                                    type='number'
+                                    placeholder='Enter price'
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+
+
+                            <Form.Group controlId='image'>
+                                <Form.Label>Image</Form.Label>
+                                <Form.Control
+
+                                    type='text'
+                                    placeholder='Enter image'
+                                    value={image}
+                                    onChange={(e) => setImage(e.target.value)}
+                                >
+                                </Form.Control>
+
+                                <Form.Group controlId="formFile" className="mb-3">
+                                    <Form.Label>Choose file</Form.Label>
                                     <Form.Control
-                                        type="text"
-                                        placeholder="MM"
-                                        value={expMonth}
-                                        onChange={(e) => setExpMonth(e.target.value)}
-                                        required
-                                    />
+                                         type="file"
+                                            onChange={uploadFileHandler}
+                                                                         />
                                 </Form.Group>
-                            </Col>
-                            <Col md={6}>
-                                <Form.Group controlId="expYear">
-                                    <Form.Label>Expiration Year</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="YYYY"
-                                        value={expYear}
-                                        onChange={(e) => setExpYear(e.target.value)}
-                                        required
-                                    />
-                                </Form.Group>
-                            </Col>
-                        </Row>
 
-                        <Form.Group controlId="cvv">
-                            <Form.Label>CVV</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="CVV"
-                                value={cvv}
-                                onChange={(e) => setCvv(e.target.value)}
-                                required
-                            />
-                        </Form.Group>
 
-<<<<<<< HEAD
-                        <Button type="submit" variant="primary">
-                            Submit Payment
-=======
                             </Form.Group>
 
 
@@ -247,13 +226,15 @@ function ProductEditScreen() {
 
                             <Button type='submit' variant='primary'>
                                 Update
->>>>>>> 8e1cb89d6ad7eaea88fc5570568cd2de2520bbca
                         </Button>
-                    </Form>
-                </Col>
-            </Row>
-        </Container>
-    );
+
+                        </Form>
+                    )}
+
+            </FormContainer >
+        </div>
+
+    )
 }
 
-export default PaymentScreen;
+export default ProductEditScreen

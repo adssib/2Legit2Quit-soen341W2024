@@ -4,7 +4,21 @@ from .models import Product, Reservation, User, Review, BranchAddress
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import serializers
 from .models import Payment
+from .models import UserAccount
 
+class UserAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = ['id', 'user', 'balance']
+
+    def create(self, validated_data):
+        return UserAccount.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.user = validated_data.get('user', instance.user)
+        instance.balance = validated_data.get('balance', instance.balance)
+        instance.save()
+        return instance
 
 class BranchAddressSerializer(serializers.ModelSerializer):
     class Meta:
@@ -50,8 +64,8 @@ class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
         fields = ['id', 'user', 'product', 'start_date', 'end_date', 'created_at',
-                  'arrived_location', 'provided_license', 'provided_credit_card',
-                  'signed_agreement', 'payment_received']
+                  'UserArrivedAtLocation', 'UserInspectedTheCar', 'UserProvidedDriverLicense',
+                  'UserProvidedCreditCard', 'UserSignedAgreement', 'UserReturnedTheCar', 'NoDamages']
     
 class UserSerializerWithToken(UserSerializer):
     token = serializers.SerializerMethodField(read_only=True)
