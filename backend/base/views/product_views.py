@@ -41,7 +41,7 @@ def createProduct(request):
         countInStock=data.get('countInStock', 0),
         category=data.get('category', 'Sample Category'),
         description=data.get('description', ''),
-        branch_id=data.get('branch_id')  # Assumes you're passing 'branch_id' in the request
+        branch_id=data.get('branch_id') 
     )
 
     serializer = ProductSerializer(product, many=False)

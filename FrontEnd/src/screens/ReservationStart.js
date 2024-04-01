@@ -17,7 +17,8 @@ function ReservationStart() {
     const [selectedCar, setSelectedCar] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-
+    const [includeInsurance, setIncludeInsurance] = useState(false); // State for insurance checkbox
+    const [includeGPS, setIncludeGPS] = useState(false); // State for GPS checkbox
   // Redux state for handling reservation
     const reservationCreate = useSelector((state) => state.reservationCreate);
     const { loading, error, success } = reservationCreate;
@@ -76,6 +77,7 @@ function ReservationStart() {
     return (
         <Container>
             <h1>Start a Reservation</h1>
+            <p>The reservation will start at 10 AM on the Start date and end at 6PM on the end date.</p>
             {error && <Alert variant="danger">{error}</Alert>}
             {success && <Alert variant="success">Reservation created successfully!</Alert>}
             <Form onSubmit={handleSubmit}> 
@@ -104,7 +106,22 @@ function ReservationStart() {
                         </Form.Group>
                     </Col>
                 </Row>
-
+                <Form.Group controlId="insuranceCheckbox">
+                    <Form.Check 
+                        type="checkbox" 
+                        label="Include Insurance (+100$)" 
+                        checked={includeInsurance} 
+                        onChange={(e) => setIncludeInsurance(e.target.checked)} 
+                    />
+                </Form.Group>
+                <Form.Group controlId="gpsCheckbox">
+                    <Form.Check 
+                        type="checkbox" 
+                        label="Include GPS (+50$)" 
+                        checked={includeGPS} 
+                        onChange={(e) => setIncludeGPS(e.target.checked)} 
+                    />
+                </Form.Group>
                 <Button variant="primary" type="submit" disabled={loading}>
                     Start Reservation
                 </Button>

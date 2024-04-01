@@ -6,7 +6,6 @@ function CartScreen() {
     const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
-        // Assuming you're storing cart items in local storage under 'cartItems'
         const storedCartItems = JSON.parse(localStorage.getItem('cartItems'));
         if (storedCartItems) {
             setCartItems(storedCartItems);
@@ -14,7 +13,6 @@ function CartScreen() {
     }, []);
 
     const removeFromCartHandler = (id) => {
-        // Implement removing from cart logic
         const updatedCartItems = cartItems.filter(item => item._id !== id);
         setCartItems(updatedCartItems);
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));

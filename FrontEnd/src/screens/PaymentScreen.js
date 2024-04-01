@@ -25,7 +25,7 @@ function PaymentScreen() {
             try {
                 const { data } = await axios.get(`/api/products/${productId}`);
                 const days = calculateDaysBetweenDates(startDate, endDate);
-                const amountDue = days * parseFloat(data.price); // Assuming price is directly on data
+                const amountDue = days * parseFloat(data.price); 
                 setAmount(amountDue);
             } catch (error) {
                 console.error("Failed to fetch product details", error);
@@ -46,13 +46,12 @@ function PaymentScreen() {
         e.preventDefault();
         const paymentInfo = {
             cardName,
-            cardNumber, // Consider masking this for display
+            cardNumber,
             expMonth,
             expYear,
             cvv,
             amount
         };
-        // Construct reservation info from state passed via navigate
         const reservationInfo = {
             productId,
             startDate,
@@ -138,17 +137,17 @@ function PaymentScreen() {
                             />
                         </Form.Group>
                         <Form.Group controlId="Cost">
-  Renting Cost for {calculateDaysBetweenDates(startDate, endDate)} day period
+  Renting Cost for {calculateDaysBetweenDates(startDate, endDate)} day period, including $500$ deposit fee
   <Form.Control
     type="text"
     placeholder="Amount will be calculated"
-    value={typeof amount === 'number' ? `$${amount.toFixed(2)} for ${calculateDaysBetweenDates(startDate, endDate)} days + 500$ deposit= $${(amount + 500).toFixed(2)}` : 'Calculating...'}
+    value={typeof amount === 'number' ? `$${amount.toFixed(2)} for ${calculateDaysBetweenDates(startDate, endDate)} days = $${(amount + 500).toFixed(2)}` : 'Calculating...'}
     readOnly 
   />
 </Form.Group>
 
 
-                        <Button type="submit" variant="primary">Submit Payment</Button>
+                        <Button type="submit" variant="primary">Next step</Button>
                     </Form>
 
                     {/* Transaction Table */}
