@@ -115,3 +115,52 @@ def userAddProduct(request):
     
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getMyListings(request):
+    user = request.user
+    products = Product.objects.filter(user=user)
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def deleteMyProduct(request, pk):
+    product = Product.objects.get(_id=pk, user=request.user)
+    
+    if product.user != request.user:
+        return Response({'detail': 'Not authorized to delete this product'}, status=status.HTTP_400_BAD_REQUEST)
+
+    product.delete()
+    return Response('Product deleted')
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def userAddProduct(request):
+    user = request.user
+    data = request.data
+
+    # Get the branch object
+    branch_id = data.get('branch')
+    branch = None
+    if branch_id:
+        branch = BranchAddress.objects.get(_id=branch_id)
+
+    product = Product.objects.create(
+        user=user,
+        name=data['name'],
+        image=data.get('image', '/placeholder.png'),
+        brand=data['brand'],
+        category=data['category'],
+        description=data['description'],
+        price=data['price'],
+        countInStock=data['countInStock'],
+        branch=branch,
+    )
+    
+    serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)

@@ -78,6 +78,9 @@ function Header() {
                     <Nav.Link>Add Your Car</Nav.Link>
               </LinkContainer>
   
+              <LinkContainer to='/mylistings'>
+                   <Nav.Link>My Listings</Nav.Link>
+              </LinkContainer>
 
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminmenu'>

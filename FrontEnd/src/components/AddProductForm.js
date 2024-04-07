@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Form, Button, Col, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function AddProductForm() {
-    // Image state
-    const [image, setImage] = useState('');
-
-    // Form data state
+    const [branches, setBranches] = useState([]);
+    const [selectedBranch, setSelectedBranch] = useState('');
+    const [image, setImage] = useState(null);
     const [formData, setFormData] = useState({
         name: '',
         brand: '',
@@ -16,12 +15,23 @@ function AddProductForm() {
         price: '',
         countInStock: '',
     });
-
     const navigate = useNavigate();
 
-    const { name, brand, category, description, price, countInStock } = formData;
+    useEffect(() => {
+        // Fetch branches when the component mounts
+        const fetchBranches = async () => {
+            try {
+                const { data } = await axios.get('/api/branches/');
+                setBranches(data);
+            } catch (error) {
+                alert('Failed to load branches');
+                console.error('Error fetching branches:', error);
+            }
+        };
 
-    // Handle form and file changes
+        fetchBranches();
+    }, []);
+
     const onChange = e => {
         if (e.target.name === 'image') {
             setImage(e.target.files[0]);
@@ -30,7 +40,6 @@ function AddProductForm() {
         }
     };
 
-    // Submit form data
     const submitHandler = async (e) => {
         e.preventDefault();
         const userInfo = JSON.parse(localStorage.getItem('userInfo'));
@@ -43,6 +52,7 @@ function AddProductForm() {
 
         const config = {
             headers: {
+                'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${userInfo.token}`,
             },
         };
@@ -50,6 +60,7 @@ function AddProductForm() {
         const data = new FormData();
         Object.keys(formData).forEach(key => data.append(key, formData[key]));
         if (image) data.append('image', image);
+        if (selectedBranch) data.append('branch', selectedBranch);
 
         try {
             await axios.post('/api/products/user/add/', data, config);
@@ -63,46 +74,114 @@ function AddProductForm() {
 
     return (
         <Form onSubmit={submitHandler}>
-            <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter car name" name="name" value={name} onChange={onChange} required />
-                </Form.Group>
+            {/* Name */}
+            <Form.Group controlId='name'>
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                    type='text'
+                    placeholder='Enter car name'
+                    name='name'
+                    value={formData.name}
+                    onChange={onChange}
+                    required
+                />
+            </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridBrand">
-                    <Form.Label>Brand</Form.Label>
-                    <Form.Control type="text" placeholder="Enter brand" name="brand" value={brand} onChange={onChange} required />
-                </Form.Group>
-            </Row>
+            {/* Brand */}
+            <Form.Group controlId='brand'>
+                <Form.Label>Brand</Form.Label>
+                <Form.Control
+                    type='text'
+                    placeholder='Enter brand'
+                    name='brand'
+                    value={formData.brand}
+                    onChange={onChange}
+                    required
+                />
+            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formGridCategory">
+            {/* Category */}
+            <Form.Group controlId='category'>
                 <Form.Label>Category</Form.Label>
-                <Form.Control placeholder="SUV, Sedan, etc." name="category" value={category} onChange={onChange} required />
+                <Form.Control
+                    type='text'
+                    placeholder='Enter category (e.g., Sedan, SUV)'
+                    name='category'
+                    value={formData.category}
+                    onChange={onChange}
+                    required
+                />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formGridDescription">
+            {/* Description */}
+            <Form.Group controlId='description'>
                 <Form.Label>Description</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder="Enter description" name="description" value={description} onChange={onChange} required />
+                <Form.Control
+                    as='textarea'
+                    rows={3}
+                    placeholder='Enter description'
+                    name='description'
+                    value={formData.description}
+                    onChange={onChange}
+                    required
+                />
             </Form.Group>
 
-            <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridPrice">
-                    <Form.Label>Price</Form.Label>
-                    <Form.Control type="number" placeholder="Enter price per day" name="price" value={price} onChange={onChange} required />
-                </Form.Group>
+            {/* Price */}
+            <Form.Group controlId='price'>
+                <Form.Label>Price</Form.Label>
+                <Form.Control
+                    type='number'
+                    placeholder='Enter price per day'
+                    name='price'
+                    value={formData.price}
+                    onChange={onChange}
+                    required
+                />
+            </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridCountInStock">
-                    <Form.Label>Count In Stock</Form.Label>
-                    <Form.Control type="number" placeholder="Enter stock count" name="countInStock" value={countInStock} onChange={onChange} required />
-                </Form.Group>
+            {/* Count In Stock */}
+            <Form.Group controlId='countInStock'>
+                <Form.Label>Count In Stock</Form.Label>
+                <Form.Control
+                    type='number'
+                    placeholder='Enter stock count'
+                    name='countInStock'
+                    value={formData.countInStock}
+                    onChange={onChange}
+                    required
+                />
+            </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridImage">
-                    <Form.Label>Image</Form.Label>
-                    <Form.Control type="file" name="image" onChange={onChange} />
-                </Form.Group>
-            </Row>
+            {/* Image */}
+            <Form.Group controlId='image'>
+                <Form.Label>Image</Form.Label>
+                <Form.Control
+                    type='file'
+                    name='image'
+                    onChange={onChange}
+                />
+            </Form.Group>
 
-            <Button variant="primary" type="submit">
+            {/* Branch Selection */}
+            <Form.Group controlId='branch'>
+                <Form.Label>Branch</Form.Label>
+                <Form.Control
+                    as='select'
+                    value={selectedBranch}
+                    onChange={(e) => setSelectedBranch(e.target.value)}
+                    required
+                >
+                    <option value=''>Select a branch</option>
+                    {branches.map((branch) => (
+                        <option key={branch._id} value={branch._id}>
+                            {branch.branch_name} - {branch.address}
+                        </option>
+                    ))}
+                </Form.Control>
+            </Form.Group>
+
+            <Button type='submit' variant='primary'>
                 Add Car
             </Button>
         </Form>
