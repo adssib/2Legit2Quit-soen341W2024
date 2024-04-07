@@ -16,7 +16,10 @@ urlpatterns = [
     path('delete/<str:pk>/', views.deleteProduct, name="product-delete"),
     path('branch/<int:branch_id>/', views.getProductsByBranch, name='products-by-branch'),
 
+<<<<<<< HEAD
     path('user/add/', views.userAddProduct, name="user-add-product"),
 
 
+=======
+>>>>>>> 1a8e21e8d220882baccf77ade986043bba21f680
 ]
