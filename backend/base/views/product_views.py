@@ -94,7 +94,6 @@ def getProductsByBranch(request, branch_id):
         return Response(serializer.data)
     except BranchAddress.DoesNotExist:
         return Response({'message': 'Branch not found'}, status=status.HTTP_404_NOT_FOUND)
-<<<<<<< HEAD
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
@@ -116,5 +115,3 @@ def userAddProduct(request):
     
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
-=======
->>>>>>> 1a8e21e8d220882baccf77ade986043bba21f680

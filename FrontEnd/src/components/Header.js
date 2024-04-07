@@ -73,16 +73,12 @@ function Header() {
               <LinkContainer to='/start-reservation'>
                 <Nav.Link>Start Reservation</Nav.Link>
               </LinkContainer>
-<<<<<<< HEAD
 
               <LinkContainer to='/add-product'>
                     <Nav.Link>Add Your Car</Nav.Link>
               </LinkContainer>
   
 
-=======
-  
->>>>>>> 1a8e21e8d220882baccf77ade986043bba21f680
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminmenu'>
                   <LinkContainer to='/admin/userList'>
