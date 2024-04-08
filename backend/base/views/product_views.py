@@ -21,7 +21,7 @@ def getProduct(request, pk):
     return Response(serializer.data)
 
 @api_view(['DELETE'])
-@permission_classes([IsAdminUser])
+@permission_classes([IsAuthenticated])
 def deleteProduct(request, pk):
     product = Product.objects.get(_id=pk)
     product.delete()
@@ -129,15 +129,17 @@ def getMyListings(request):
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def deleteMyProduct(request, pk):
-    product = Product.objects.get(_id=pk, user=request.user)
+    try:
+        product = Product.objects.get(_id=pk, user=request.user)
+        product.delete()
+        return Response({'message': 'Product deleted'}, status=status.HTTP_200_OK)
+    except Product.DoesNotExist:
+        return Response({'detail': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        # Catch any other exceptions and return a generic error message
+        return Response({'detail': 'Error occurred while deleting the product'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
-    if product.user != request.user:
-        return Response({'detail': 'Not authorized to delete this product'}, status=status.HTTP_400_BAD_REQUEST)
-
-    product.delete()
-    return Response('Product deleted')
-
-
+    
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def userAddProduct(request):

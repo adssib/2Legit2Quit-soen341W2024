@@ -8,30 +8,30 @@ function MyListings() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchMyListings = async () => {
-            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-            if (!userInfo) {
-                alert("You must be logged in to see your listings.");
-                navigate('/login');
-                return;
-            }
+        fetchMyListings();
+    }, []);
 
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${userInfo.token}`,
-                },
-            };
+    const fetchMyListings = async () => {
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        if (!userInfo) {
+            alert("You must be logged in to see your listings.");
+            navigate('/login');
+            return;
+        }
 
-            try {
-                const { data } = await axios.get('/api/products/mylistings', config);
-                setListings(data);
-            } catch (error) {
-                console.error('Failed to fetch listings', error.response && error.response.data.message ? error.response.data.message : error.message);
-            }
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`,
+            },
         };
 
-        fetchMyListings();
-    }, [navigate]);
+        try {
+            const { data } = await axios.get('/api/products/mylistings', config);
+            setListings(data);
+        } catch (error) {
+            console.error('Failed to fetch listings', error.response && error.response.data.message ? error.response.data.message : error.message);
+        }
+    };
 
     const deleteHandler = async (id) => {
         if (window.confirm('Are you sure you want to delete this car?')) {
@@ -57,15 +57,13 @@ function MyListings() {
         <Container>
             <h2 className="text-center mb-4">My Listings</h2>
             <Row className="d-flex justify-content-center">
-                {listings.map(listing => (
+                {listings.map((listing) => (
                     <Col key={listing._id} sm={12} md={6} lg={4} xl={3} className="mb-3">
                         <Card className="h-100">
                             <Card.Img variant="top" src={listing.image} />
                             <Card.Body className="d-flex flex-column">
                                 <Card.Title>{listing.name}</Card.Title>
-                                <Card.Text>
-                                    {listing.description}
-                                </Card.Text>
+                                <Card.Text>{listing.description}</Card.Text>
                                 <Button variant="primary" onClick={() => navigate(`/product/${listing._id}`)}>View Listing</Button>
                                 <Button variant="danger" className="mt-2" onClick={() => deleteHandler(listing._id)}>Remove Car</Button>
                             </Card.Body>
