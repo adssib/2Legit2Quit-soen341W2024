@@ -21,7 +21,7 @@ def getProduct(request, pk):
     return Response(serializer.data)
 
 @api_view(['DELETE'])
-@permission_classes([IsAdminUser])
+@permission_classes([IsAuthenticated])
 def deleteProduct(request, pk):
     product = Product.objects.get(_id=pk)
     product.delete()
@@ -94,3 +94,75 @@ def getProductsByBranch(request, branch_id):
         return Response(serializer.data)
     except BranchAddress.DoesNotExist:
         return Response({'message': 'Branch not found'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def userAddProduct(request):
+    user = request.user
+    data = request.data
+
+    product = Product.objects.create(
+        user=user,
+        name=data['name'],
+        image=data.get('image', '/placeholder.png'),  # Ensure you handle image uploads appropriately
+        brand=data['brand'],
+        category=data['category'],
+        description=data['description'],
+        price=data['price'],
+        countInStock=data['countInStock'],
+        branch_id=data.get('branch', None),  # Assume branch selection is optional
+    )
+    
+    serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getMyListings(request):
+    user = request.user
+    products = Product.objects.filter(user=user)
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def deleteMyProduct(request, pk):
+    try:
+        product = Product.objects.get(_id=pk, user=request.user)
+        product.delete()
+        return Response({'message': 'Product deleted'}, status=status.HTTP_200_OK)
+    except Product.DoesNotExist:
+        return Response({'detail': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        # Catch any other exceptions and return a generic error message
+        return Response({'detail': 'Error occurred while deleting the product'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def userAddProduct(request):
+    user = request.user
+    data = request.data
+
+    # Get the branch object
+    branch_id = data.get('branch')
+    branch = None
+    if branch_id:
+        branch = BranchAddress.objects.get(_id=branch_id)
+
+    product = Product.objects.create(
+        user=user,
+        name=data['name'],
+        image=data.get('image', '/placeholder.png'),
+        brand=data['brand'],
+        category=data['category'],
+        description=data['description'],
+        price=data['price'],
+        countInStock=data['countInStock'],
+        branch=branch,
+    )
+    
+    serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)

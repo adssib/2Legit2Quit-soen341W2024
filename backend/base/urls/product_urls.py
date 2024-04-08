@@ -16,4 +16,7 @@ urlpatterns = [
     path('delete/<str:pk>/', views.deleteProduct, name="product-delete"),
     path('branch/<int:branch_id>/', views.getProductsByBranch, name='products-by-branch'),
 
+    path('user/add/', views.userAddProduct, name="user-add-product"),
+    path('mylistings', views.getMyListings, name="my-listings"),
+    path('products/delete/<str:pk>/', views.deleteMyProduct, name="delete-my-product"),
 ]

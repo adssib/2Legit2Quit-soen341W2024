@@ -27,7 +27,8 @@ import PaymentScreen from './screens/PaymentScreen';
 import { Link } from 'react-router-dom';
 import ReservationDetailScreen from './screens/ReservationDetailScreen';
 import ConfirmationScreen from './screens/ConfirmationScreen';
-
+import AddProductForm from './components/AddProductForm';
+import MyListings from './components/MyListings';
 function App() {
   return (
     <Router>
@@ -52,6 +53,8 @@ function App() {
               <Route path='/cart' element={<CartScreen/>} />
               <Route path='/search/:keyword' element={<SearchScreen/>} />
               <Route path="/reserve" element={<ReservationForm />} />
+              <Route path='/add-product' element={<AddProductForm />} />
+              <Route path='/mylistings' element={<MyListings />} />
 
               <Route path="/admin/userlist" element={<UserListScreen />} />
               <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
