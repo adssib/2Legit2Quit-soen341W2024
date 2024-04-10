@@ -13,7 +13,7 @@ const initialState = {
     loading: false,
     error: null,
     reservation: {},
-    success: false, // Make sure to include this if you're using it in your logic
+    success: false, 
 };
 
 export const reservationDetailsReducer = (state = initialState, action) => {

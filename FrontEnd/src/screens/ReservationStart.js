@@ -5,6 +5,8 @@ import products from '../products';
 import { useSelector, useDispatch } from 'react-redux';
 import { createReservation, resetReservationSuccess } from '../actions/reservationActions';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Table } from 'react-bootstrap';
 
 
 function ReservationStart() {
@@ -12,16 +14,17 @@ function ReservationStart() {
     const location = useLocation();
     const navigate = useNavigate();
     const selectedProductId = location.state?.selectedProductId;
-
+    const [carReservations, setCarReservations] = useState([]);
     // States for form fields
     const [selectedCar, setSelectedCar] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-    const [includeInsurance, setIncludeInsurance] = useState(false); // State for insurance checkbox
-    const [includeGPS, setIncludeGPS] = useState(false); // State for GPS checkbox
+    const [includeInsurance, setIncludeInsurance] = useState(false); 
+    const [includeGPS, setIncludeGPS] = useState(false); 
   // Redux state for handling reservation
     const reservationCreate = useSelector((state) => state.reservationCreate);
     const { loading, error, success } = reservationCreate;
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         if (selectedProductId) {
@@ -31,7 +34,21 @@ function ReservationStart() {
         }
     }, [selectedProductId]);
 
+    useEffect(() => {
+        const fetchReservations = async () => {
+            if(selectedCar) {
+                try {
+                    const response = await axios.get(`/api/reservations/by_product/${selectedCar}`);
+                    console.log(response.data); // Check what's received
+                    setCarReservations(response.data);
+                } catch (error) {
+                    console.error('Failed to fetch reservations:', error);
+                }
+            }
+        };
     
+        fetchReservations();
+    }, [selectedCar]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -126,7 +143,31 @@ function ReservationStart() {
                     Start Reservation
                 </Button>
             </Form>
+            <div>
+  <h3>Existing Reservations for Selected Car</h3>
+  {carReservations.length > 0 ? (
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {carReservations.map((reservation, index) => (
+          <tr key={index}>
+            <td>{reservation.start_date}</td>
+            <td>{reservation.end_date}</td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  ) : (
+    <p>No active reservations for this car.</p>
+  )}
+</div>
         </Container>
+        
     );
 }
 

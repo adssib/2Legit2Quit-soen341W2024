@@ -34,7 +34,8 @@ function ConfirmationScreen() {
             cardName: paymentInfo?.cardName,
             cardNumber: paymentInfo?.cardNumber,
             amount: (parseFloat(paymentInfo.amount) + 500).toFixed(2),
-            userEmail: reservationInfo?.user,
+            userEmail: reservationInfo?.user
+           
         };
 
         emailjs.send('service_yqkrpgt', 'template_hw1432q', templateParams, 'suwiaWPecm3bi3qao')
@@ -55,7 +56,7 @@ function ConfirmationScreen() {
         const lineHeight = 10;
         let currentHeight = 20;
     
-        // Title
+
         doc.setFontSize(14);
         doc.setFont('helvetica', 'bold');
         doc.text('Reservation Confirmation', margin, currentHeight);
@@ -67,12 +68,11 @@ function ConfirmationScreen() {
         const agreementText = 'This Rental Agreement ("Agreement") is entered into between RentAcar, located at 123 Montreal, Canada, hereinafter referred to as the "Rental Company," and the individual or entity identified below, hereinafter referred to as the "Renter."';
         const splitAgreementText = doc.splitTextToSize(agreementText, maxWidth);
         doc.text(splitAgreementText, margin, currentHeight);
-        currentHeight += splitAgreementText.length * 6; // Adjust based on the split text length and desired spacing
+        currentHeight += splitAgreementText.length * 6; 
     
-        // Reset font size for reservation details
         doc.setFontSize(12);
     
-        // Dynamic reservation details
+
         const details = [
             `Car: ${productName || "Loading product name..."}`,
             `Start Date: ${reservationInfo?.startDate} at 10:00 AM`,
@@ -92,10 +92,8 @@ function ConfirmationScreen() {
             currentHeight += lineHeight;
         });
     
-        // Additional space before the legal text
         currentHeight += lineHeight * 2;
     
-        // Legal agreement sections
         const legalText = `The Renter acknowledges receiving the vehicle described above in good condition and agrees to return it to the Rental Company in the same condition, subject to normal wear and tear.
     The Renter agrees to use the vehicle solely for personal or business purposes and not for any illegal activities.
     The Renter agrees to pay the Rental Company the agreed-upon rental rate for the specified rental period. Additional charges may apply for exceeding the mileage limit, late returns, fuel refueling, or other damages.
