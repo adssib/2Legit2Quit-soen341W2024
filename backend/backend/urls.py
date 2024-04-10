@@ -25,7 +25,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
     path('api/products/', include('base.urls.product_urls')),
     path('api/users/', include('base.urls.user_urls')),
-    path('api/orders/', include('base.urls.order_urls')),
+    # path('api/orders/', include('base.urls.order_urls')),
     path('api/payments/', include('base.urls.payment_urls')),
     path('api/reservations/', include('base.urls.reservation_urls')),
     path('api/branches/', include('base.urls.branch_urls')), 

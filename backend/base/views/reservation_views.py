@@ -5,7 +5,7 @@ from datetime import datetime
 from base.models import Product, Reservation
 from base.serializers import ReservationSerializer
 from django.shortcuts import get_object_or_404
-from base.generate_contract import generate_rental_agreement_pdf_and_send_email
+# from base.generate_contract import generate_rental_agreement_pdf_and_send_email
 from rest_framework import status
 
 file_path = "../static/receipt/rental_agreement.pdf"
