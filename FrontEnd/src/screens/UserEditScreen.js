@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom'; // Import useParams and useNavigate
+import { Link, useParams, useNavigate } from 'react-router-dom'; 
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../components/Loader';
@@ -9,8 +9,8 @@ import { getUserDetails, updateUser } from '../actions/userActions';
 import { USER_UPDATE_RESET } from '../constants/userConstants';
 
 function UserEditScreen() {
-    const { id: userId } = useParams(); // Use useParams to get the userId
-    const navigate = useNavigate(); // Use useNavigate for redirection
+    const { id: userId } = useParams(); 
+    const navigate = useNavigate(); 
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
