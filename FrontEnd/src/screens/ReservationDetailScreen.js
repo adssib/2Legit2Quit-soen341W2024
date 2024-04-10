@@ -7,11 +7,11 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 
 function ReservationDetailScreen() {
-    const { id: reservationId } = useParams(); // Use useParams to get the reservationId
+    const { id: reservationId } = useParams(); 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getReservationDetails(reservationId)); // Dispatch action to fetch reservation details
+        dispatch(getReservationDetails(reservationId)); 
     }, [dispatch, reservationId]);
 
     const reservationDetails = useSelector(state => state.reservationDetails);

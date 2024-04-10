@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap';
-import Rating from '../components/Rating';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { listProductDetails } from '../actions/productActions';
@@ -38,16 +37,14 @@ function ProductScreen() {
                                 <h3>{product.name}</h3>
                             </ListGroup.Item>
 
-                            <ListGroup.Item>
-                                <Rating value={product.rating} text={`${product.numReviews} reviews`} color={'#f8e825'}/>
-                            </ListGroup.Item>
+                            
 
                             <ListGroup.Item>
                                 Price: ${product.price} per day
                             </ListGroup.Item>
 
                             <ListGroup.Item>
-                                Description: {product.description}
+                                 {product.description}
                             </ListGroup.Item>
 
                             <ListGroup.Item>

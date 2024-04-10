@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import { Card, Button, Container, Row, Col, Collapse } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 function MyListings() {
     const [listings, setListings] = useState([]);
+    const [reservations, setReservations] = useState({});
+    const [open, setOpen] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -28,6 +30,16 @@ function MyListings() {
         try {
             const { data } = await axios.get('/api/products/mylistings', config);
             setListings(data);
+            const resPromises = data.map(listing =>
+                axios.get(`/api/reservations/by_product/${listing._id}`, config)
+            );
+            Promise.all(resPromises).then(responses => {
+                const resData = responses.reduce((acc, res, index) => ({
+                    ...acc,
+                    [data[index]._id]: res.data
+                }), {});
+                setReservations(resData);
+            });
         } catch (error) {
             console.error('Failed to fetch listings', error.response && error.response.data.message ? error.response.data.message : error.message);
         }
@@ -65,6 +77,19 @@ function MyListings() {
                                 <Card.Title>{listing.name}</Card.Title>
                                 <Card.Text>{listing.description}</Card.Text>
                                 <Button variant="primary" onClick={() => navigate(`/product/${listing._id}`)}>View Listing</Button>
+                                <Button variant="info" className="mt-2" onClick={() => setOpen({ ...open, [listing._id]: !open[listing._id] })}>
+                                    Toggle Reservations
+                                </Button>
+                                <Collapse in={open[listing._id]}>
+                                    <div>
+                                        <h5>Reservations:</h5>
+                                        <ul>
+                                            {reservations[listing._id]?.map(res => (
+                                                <li key={res.id}>{res.start_date} to {res.end_date} - {res.user?.name}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </Collapse>
                                 <Button variant="danger" className="mt-2" onClick={() => deleteHandler(listing._id)}>Remove Car</Button>
                             </Card.Body>
                         </Card>

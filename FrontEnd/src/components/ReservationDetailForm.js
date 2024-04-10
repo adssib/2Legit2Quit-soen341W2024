@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 
 function ReservationDetailForm({ reservation }) {
     const [userName, setUserName] = useState('');
+    const [userArrived, setUserArrived] = useState(false);
+    const [carInspected, setCarInspected] = useState(false);
+    const [licenseConfirmed, setLicenseConfirmed] = useState(false);
+    const [creditCardConfirmed, setCreditCardConfirmed] = useState(false);
+    const [agreementSigned, setAgreementSigned] = useState(false);
+    const [noDamages, setNoDamages] = useState(false);
+    const [returnedToLocation, setReturnedToLocation] = useState(false);
+    const [formError, setFormError] = useState('');
 
     useEffect(() => {
         if (reservation.user && reservation.user.email) {
             const fetchUserName = async () => {
                 try {
-                    // Fetch user details by email
                     const response = await axios.get(`/api/users/by-email/${reservation.user.email}`);
-                    // Set userName using the name field which already concatenates first name and last name
                     setUserName(response.data.name);
                 } catch (error) {
                     console.error("Could not fetch user details", error);
@@ -24,9 +30,23 @@ function ReservationDetailForm({ reservation }) {
         }
     }, [reservation.user]);
 
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        if (!userArrived || !carInspected || !licenseConfirmed || !creditCardConfirmed || !agreementSigned) {
+            setFormError("Please confirm all check-in procedures before submission.");
+            return;
+        }
+        if (!noDamages || !returnedToLocation) {
+            setFormError("Please confirm all check-out procedures before submission.");
+            return;
+        }
+        setFormError('');
+        alert('Form submitted successfully!');
+        // You would typically send this data to the server here
+    }
+
     function generateRentalAgreement() {
         const doc = new jsPDF();
-
         const agreementText = `
             Rental Agreement
             ----------------
@@ -45,43 +65,36 @@ function ReservationDetailForm({ reservation }) {
     
             Date: _______________
         `;
-
-        // Split the agreement text by new lines and add each line to the PDF
         agreementText.split('\n').forEach((line, index) => {
             doc.text(line, 10, 10 + (index * 10));
         });
-
-        // Save the created PDF
         doc.save(`Rental_Agreement_${new Date().toLocaleDateString()}.pdf`);
     }
+
     return (
-        <Form>
-            {/* General information */}
+        <Form onSubmit={handleFormSubmit}>
             <h4>General Information</h4>
             <p>Start Date: {reservation.start_date}</p>
             <p>End Date: {reservation.end_date}</p>
-            <p>User: {reservation.user && reservation.user.name}</p>
+            <p>User: {userName}</p>
             <p>Product: {reservation.product_name}</p>
-        
-            {/* Check-in questions */}
-            <h4>Check-in</h4>
-            <Form.Check type="radio" label="Did the User arrive at the location?" />
-            <Form.Check type="radio" label="Did he inspect and approve of the car that he rented?" />
-            <Form.Check type="radio" label="Is the driver license provided the same that was rented with?" />
-            <Form.Check type="radio" label="Is the credit card used the same?" />
-            <Form.Check type="radio" label="Did he sign manually the agreement?" />
-            <Button variant="primary" onClick={generateRentalAgreement}>Generate Rental Agreement</Button>
-            {/* Checkout questions */}
-            <p></p>
-            <h4>Check-out</h4>
-            <Form.Check type="radio" label="Is there any damages?" />
-            <Form.Check type="radio" label="Did the user return to the drop off locations?" />
 
-            {/* Submit button */}
+            <h4>Check-in</h4>
+            <Form.Check type="checkbox" label="Did the User arrive at the location?" checked={userArrived} onChange={e => setUserArrived(e.target.checked)} />
+            <Form.Check type="checkbox" label="Did he inspect and approve of the car that he rented?" checked={carInspected} onChange={e => setCarInspected(e.target.checked)} />
+            <Form.Check type="checkbox" label="Is the driver license provided the same that was rented with?" checked={licenseConfirmed} onChange={e => setLicenseConfirmed(e.target.checked)} />
+            <Form.Check type="checkbox" label="Is the credit card used the same?" checked={creditCardConfirmed} onChange={e => setCreditCardConfirmed(e.target.checked)} />
+            <Form.Check type="checkbox" label="Did he sign manually the agreement?" checked={agreementSigned} onChange={e => setAgreementSigned(e.target.checked)} />
+            <Button variant="primary" onClick={generateRentalAgreement}>Generate Rental Agreement</Button>
+
+            <h4>Check-out</h4>
+            <Form.Check type="checkbox" label="Is there any damages?" checked={noDamages} onChange={e => setNoDamages(e.target.checked)} />
+            <Form.Check type="checkbox" label="Did the user return to the drop off locations?" checked={returnedToLocation} onChange={e => setReturnedToLocation(e.target.checked)} />
+
+            {formError && <Alert variant="danger">{formError}</Alert>}
             <Button variant="primary" type="submit">Submit</Button>
         </Form>
     );
 }
 
 export default ReservationDetailForm;
-

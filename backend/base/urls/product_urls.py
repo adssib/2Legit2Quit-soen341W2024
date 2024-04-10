@@ -7,9 +7,10 @@ urlpatterns = [
 
     path('create/', views.createProduct, name="product-create"),
     path('upload/', views.uploadImage, name="image-upload"),
+    path('filters/', views.getFilterOptions, name='product-filters'),
 
-    # path('<str:pk>/reviews/', views.createProductReview, name="create-review"),
-    # path('top/', views.getTopProducts, name='top-products'),
+    
+   
     path('<str:pk>/', views.getProduct, name="product"),
 
     path('update/<str:pk>/', views.updateProduct, name="product-update"),
@@ -19,4 +20,7 @@ urlpatterns = [
     path('user/add/', views.userAddProduct, name="user-add-product"),
     path('mylistings', views.getMyListings, name="my-listings"),
     path('products/delete/<str:pk>/', views.deleteMyProduct, name="delete-my-product"),
+    path('search/<str:keyword>/', views.searchProducts, name="product-search"),
+    
+
 ]

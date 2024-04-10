@@ -46,27 +46,27 @@ export const updateCheckInProcessReducer = (state = { success: false }, action) 
 export const reservationReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.CREATE_RESERVATION_REQUEST:
-            // Set loading to true to indicate that the reservation creation is in progress
+            
             return {
                 ...state,
                 loading: true,
             };
         case actionTypes.CREATE_RESERVATION_SUCCESS:
-            // Handle successful reservation creation
+            
             return {
                 ...state,
                 loading: false,
-                reservation: action.payload, // Assuming action.payload contains the newly created reservation
+                reservation: action.payload, 
             };
         case actionTypes.CREATE_RESERVATION_FAIL:
-            // Handle reservation creation failure
+            
             return {
                 ...state,
                 loading: false,
-                error: action.payload, // Assuming action.payload contains the error message
+                error: action.payload, 
             };
 
-            // In your reservation reducer
+            
         case RESERVATION_CREATE_RESET:
              return { 
                 ...state,

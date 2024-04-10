@@ -51,7 +51,7 @@ def updateUserProfile(request):
     user = request.user
     data = request.data
     user.first_name = data.get('firstName', user.first_name)
-    user.last_name = data.get('lastName', user.last_name)  # Handle last name update
+    user.last_name = data.get('lastName', user.last_name)  
     user.username = data['email']
     user.email = data['email']
     if data.get('password'):

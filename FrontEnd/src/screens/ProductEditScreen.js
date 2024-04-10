@@ -12,9 +12,9 @@ import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
 function ProductEditScreen() {
 
-   // Replace match.params.id with useParams
+   
    const { id: productId } = useParams();
-   const navigate = useNavigate(); // Replace history with useNavigate for navigation
+   const navigate = useNavigate(); 
 
     const [name, setName] = useState('')
     const [price, setPrice] = useState(0)
@@ -25,7 +25,7 @@ function ProductEditScreen() {
     const [description, setDescription] = useState('')
     const [uploading, setUploading] = useState(false)
     const [address, setAddress] = useState('');
-    const [branches, setBranches] = useState([]); // Holds the list of branches
+    const [branches, setBranches] = useState([]); 
 
 
     const dispatch = useDispatch()
@@ -52,7 +52,7 @@ function ProductEditScreen() {
                 setCategory(product.category);
                 setCountInStock(product.countInStock);
                 setDescription(product.description);
-                setAddress(product.address); // Add this line
+                setAddress(product.address); 
                 
             }
         }

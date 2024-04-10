@@ -61,7 +61,7 @@ def updateProduct(request, pk):
     product.category = data['category']
     product.description = data['description']
     product.address = data.get('address', product.address)  
-    product.branch_id = data.get('branch_id', product.branch_id)  # Update branch if provided
+    product.branch_id = data.get('branch_id', product.branch_id)  
     product.save()
 
     serializer = ProductSerializer(product, many=False)
@@ -88,7 +88,7 @@ def getBranches(request):
 @api_view(['GET'])
 def getProductsByBranch(request, branch_id):
     try:
-        # Correctly filter products by the branch's foreign key ID
+       
         products = Product.objects.filter(branch_id=branch_id)
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
@@ -104,13 +104,13 @@ def userAddProduct(request):
     product = Product.objects.create(
         user=user,
         name=data['name'],
-        image=data.get('image', '/placeholder.png'),  # Ensure you handle image uploads appropriately
+        image=data.get('image', '/placeholder.png'),  
         brand=data['brand'],
         category=data['category'],
         description=data['description'],
         price=data['price'],
         countInStock=data['countInStock'],
-        branch_id=data.get('branch', None),  # Assume branch selection is optional
+        branch_id=data.get('branch', None),  
     )
     
     serializer = ProductSerializer(product, many=False)
@@ -136,7 +136,7 @@ def deleteMyProduct(request, pk):
     except Product.DoesNotExist:
         return Response({'detail': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
-        # Catch any other exceptions and return a generic error message
+       
         return Response({'detail': 'Error occurred while deleting the product'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
     
@@ -146,7 +146,7 @@ def userAddProduct(request):
     user = request.user
     data = request.data
 
-    # Get the branch object
+    
     branch_id = data.get('branch')
     branch = None
     if branch_id:
@@ -166,3 +166,50 @@ def userAddProduct(request):
     
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def searchProducts(request, keyword):
+    """Search products based on a keyword."""
+    if keyword:
+        products = Product.objects.filter(name__icontains=keyword)
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data)
+    return Response({"message": "No keyword provided"}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def getProducts(request):
+    query_params = request.query_params
+    products = Product.objects.all()
+    
+    branch_id = request.query_params.get('branch')
+    if branch_id:
+        products = Product.objects.filter(branch_id=branch_id)
+    else:
+        products = Product.objects.all()
+    
+    brand = query_params.get('brand')
+    if brand:
+        products = products.filter(brand__iexact=brand)
+    
+    category = query_params.get('category')
+    if category:
+        products = products.filter(category__iexact=category)
+    
+    price_min = query_params.get('price_min')
+    price_max = query_params.get('price_max')
+    if price_min and price_max:
+        products = products.filter(price__gte=price_min, price__lte=price_max)
+    
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getFilterOptions(request):
+    brands = Product.objects.values_list('brand', flat=True).distinct().order_by('brand')
+    categories = Product.objects.values_list('category', flat=True).distinct().order_by('category')
+    if not brands or not categories:
+        return Response({'message': 'No brands or categories found'}, status=status.HTTP_404_NOT_FOUND)
+    return Response({'brands': list(brands), 'categories': list(categories)})
+
+

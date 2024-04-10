@@ -2,66 +2,60 @@ import React, { useState, useEffect } from 'react';
 import { Button, Container, Form, FormControl, Nav, NavDropdown, Navbar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom';
 import { logout } from '../actions/userActions';
-import { listBranches } from '../actions/branchActions'; // Import the action to list branches
+import { listBranches } from '../actions/branchActions';
 
 function Header() {
   const [keyword, setKeyword] = useState('');
-  const navigate = useNavigate(); // Instantiate the navigate hook
-
-  // New state for branch selection
-  const [selectedBranch, setSelectedBranch] = useState('');
-
-  const userLogin = useSelector(state => state.userLogin);
-  const branchList = useSelector(state => state.branchList); // Assuming you have a branchList in your Redux state
-  const { userInfo } = userLogin;
-  const { branches } = branchList; // Assuming branches is the array of branch objects
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const userLogin = useSelector(state => state.userLogin);
+  const { userInfo } = userLogin;
+  const branchList = useSelector(state => state.branchList);
+  const { branches } = branchList;
+
   useEffect(() => {
-    dispatch(listBranches()); // Fetch branches when component mounts
+    dispatch(listBranches());
   }, [dispatch]);
 
   const logoutHandler = () => {
     dispatch(logout());
+    navigate('/login');
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
-      navigate(`/search/${keyword}`); // Redirect to search page with keyword
+      navigate(`/search/${keyword}`);
     } else {
-      navigate('/'); // Redirect to home page if search is empty
+      navigate('/');
     }
   };
 
-  const handleBranchSelect = (branchId) => {
-    navigate(`/branch/${branchId}`);
-  };
-  
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>Car Rental</Navbar.Brand>
+            <Navbar.Brand>CARS 2 GO</Navbar.Brand>
           </LinkContainer>
   
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <LinkContainer to='/cart'>
-                <Nav.Link><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
-              </LinkContainer>
-  
+            <Nav className="me-auto">
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id='username'>
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
-  
+                  <LinkContainer to='/mylistings'>
+                    <NavDropdown.Item>My Listings</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/cart'>
+                    <NavDropdown.Item>My Reservations</NavDropdown.Item>
+                  </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
@@ -69,49 +63,31 @@ function Header() {
                   <Nav.Link><i className="fas fa-user"></i> Login</Nav.Link>
                 </LinkContainer>
               )}
-  
+              <NavDropdown title="Reservation Options">
               <LinkContainer to='/start-reservation'>
-                <Nav.Link>Start Reservation</Nav.Link>
+              <NavDropdown.Item>Start Reservation</NavDropdown.Item>
               </LinkContainer>
-
               <LinkContainer to='/add-product'>
-                    <Nav.Link>Add Your Car</Nav.Link>
+              <NavDropdown.Item>Add Your Car for Rental</NavDropdown.Item>
               </LinkContainer>
-  
-              <LinkContainer to='/mylistings'>
-                   <Nav.Link>My Listings</Nav.Link>
-              </LinkContainer>
-
+              </NavDropdown>
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title='Admin' id='adminmenu'>
                   <LinkContainer to='/admin/userList'>
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>
-  
                   <LinkContainer to='/admin/productlist'>
                     <NavDropdown.Item>Products</NavDropdown.Item>
                   </LinkContainer>
-  
-                  <LinkContainer to='/admin/orderlist'>
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </LinkContainer>
-  
                   <LinkContainer to='/admin/reservationlist'>
                     <NavDropdown.Item>Reservations</NavDropdown.Item>
                   </LinkContainer>
+                  <LinkContainer to='/admin/paymentlist'>
+                    <NavDropdown.Item>Payments</NavDropdown.Item>
+                  </LinkContainer>
                 </NavDropdown>
               )}
-  
-              {/* Branch selection dropdown - ensure branches are fetched and added here */}
-              {branches && branches.length > 0 && (
-  <NavDropdown title="Branches" id="branch-dropdown">
-    {branches.map(branch => (
-      <NavDropdown.Item key={branch._id} onClick={() => navigate(`/branch/${branch._id}`)}>
-        {`${branch.branch_name} - ${branch.address}, ${branch.city}, ${branch.postalCode}, ${branch.country}`}
-      </NavDropdown.Item>
-    ))}
-  </NavDropdown>
-)}
+              
             </Nav>
             <Form className="d-flex" onSubmit={submitHandler}>
               <FormControl
@@ -128,8 +104,6 @@ function Header() {
       </Navbar>
     </header>
   );
-  
-  
 }
 
 export default Header;

@@ -6,12 +6,11 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { listProducts, deleteProduct, createProduct } from '../actions/productActions';
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
-import { useNavigate, useLocation } from 'react-router-dom'; // Import useNavigate and useLocation
-
+import { useNavigate, useLocation } from 'react-router-dom'; 
 function ProductListScreen() {
     const dispatch = useDispatch();
-    const navigate = useNavigate(); // Use useNavigate for navigation
-    const location = useLocation(); // Use useLocation to access query parameters
+    const navigate = useNavigate(); 
+    const location = useLocation(); 
 
     const productList = useSelector(state => state.productList);
     const { loading, error, products= [] } = productList;
@@ -25,17 +24,17 @@ function ProductListScreen() {
     const userLogin = useSelector(state => state.userLogin);
     const { userInfo } = userLogin;
 
-    let keyword = location.search; // Use location.search to get the query string
+    let keyword = location.search; 
 
     useEffect(() => {
         dispatch({ type: PRODUCT_CREATE_RESET });
 
         if (!userInfo?.isAdmin) {
-            navigate('/login'); // Use navigate for redirection
+            navigate('/login'); 
         }
 
         if (successCreate) {
-            navigate(`/admin/product/${createdProduct?._id}/edit`); // Use navigate for redirection
+            navigate(`/admin/product/${createdProduct?._id}/edit`); 
         } else {
             dispatch(listProducts(keyword));
         }

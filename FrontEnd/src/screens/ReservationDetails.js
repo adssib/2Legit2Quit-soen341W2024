@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
 function ReservationDetails() {
-  let { id } = useParams(); //to get the reservation ID from the URL
+  let { id } = useParams(); 
 
   return (
     <Container>

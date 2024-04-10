@@ -18,7 +18,7 @@ function AddProductForm() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Fetch branches when the component mounts
+        
         const fetchBranches = async () => {
             try {
                 const { data } = await axios.get('/api/branches/');

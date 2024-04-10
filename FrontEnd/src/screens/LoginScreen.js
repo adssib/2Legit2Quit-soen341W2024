@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col, Container } from 'react-bootstrap';
-import { useNavigate, Link, useLocation } from 'react-router-dom'; // Updated to use useLocation
-import Loader from '../components/Loader';
+import { useNavigate, Link, useLocation } from 'react-router-dom'; 
 import Message from '../components/Message';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../actions/userActions';
@@ -12,8 +11,8 @@ function LoginScreen() {
     const [password, setPassword] = useState('');
     
     const dispatch = useDispatch();
-    const navigate = useNavigate(); // For programmatically navigating
-    const location = useLocation(); // Get access to the location object
+    const navigate = useNavigate(); 
+    const location = useLocation(); 
 
     const redirect = location.search ? location.search.split('=')[1] : '/';
 
@@ -22,7 +21,7 @@ function LoginScreen() {
 
     useEffect(() => {
         if (userInfo) {
-            navigate(redirect); // Use navigate for redirection
+            navigate(redirect); 
         }
     }, [navigate, userInfo, redirect]);
 

@@ -21,6 +21,9 @@ import {
     PRODUCT_UPDATE_FAIL,
     PRODUCT_UPDATE_RESET,
 
+    FILTER_OPTIONS_FAIL,
+    FILTER_OPTIONS_REQUEST,
+    FILTER_OPTIONS_SUCCESS
 } from '../constants/productConstants'
 
 
@@ -121,3 +124,16 @@ export const productUpdateReducer = (state = { product: {} }, action) => {
             return state
     }
 }
+
+export const filterOptionsReducer = (state = { brands: [], categories: [] }, action) => {
+    switch (action.type) {
+        case FILTER_OPTIONS_REQUEST:
+            return { loading: true };
+        case FILTER_OPTIONS_SUCCESS:
+            return { loading: false, brands: action.payload.brands, categories: action.payload.categories };
+        case FILTER_OPTIONS_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};

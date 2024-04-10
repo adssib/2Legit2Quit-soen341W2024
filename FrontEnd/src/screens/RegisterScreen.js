@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { useNavigate, Link, useLocation } from 'react-router-dom'; // Corrected imports
+import { useNavigate, Link, useLocation } from 'react-router-dom'; 
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../actions/userActions'; // Removed login import as it's not used here
+import { register } from '../actions/userActions'; 
 import FormContainer from '../components/FormContainer';
 
 function RegisterScreen() {
-    const [name, setName] = useState(''); // Changed function name to follow convention
+    const [name, setName] = useState(''); 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState(null);
 
     const dispatch = useDispatch();
-    const navigate = useNavigate(); // Using useNavigate for redirection
-    const location = useLocation(); // Using useLocation to access query parameters
+    const navigate = useNavigate(); 
+    const location = useLocation(); 
 
     const redirect = location.search ? location.search.split('=')[1] : '/';
 

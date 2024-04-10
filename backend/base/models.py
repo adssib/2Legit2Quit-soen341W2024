@@ -79,7 +79,7 @@ class Reservation(models.Model):
     end_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
 
-        # Fields for tracking check-in process
+        
     UserArrivedAtLocation = models.BooleanField(default=False)
     UserInspectedTheCar = models.BooleanField(default=False)
     UserProvidedDriverLicense = models.BooleanField(default=False)
@@ -95,7 +95,7 @@ class Reservation(models.Model):
 
 class Payment(models.Model):
     card_name = models.CharField(max_length=255)
-    card_number = models.CharField(max_length=255)  # Store the masked number
+    card_number = models.CharField(max_length=255) 
     exp_month = models.CharField(max_length=2)
     exp_year = models.CharField(max_length=4)
     amount = models.DecimalField(max_digits=10, decimal_places=2)

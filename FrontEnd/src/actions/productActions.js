@@ -27,27 +27,54 @@ import {
 
 } from '../constants/productConstants'
 
-
-export const listProducts = (keyword = '') => async (dispatch) => {
+export const listProducts = (filters = {}) => async (dispatch) => {
     try {
-        dispatch({ type: PRODUCT_LIST_REQUEST })
-
-        const { data } = await axios.get(`/api/products/${keyword}`)
-
+        dispatch({ type: PRODUCT_LIST_REQUEST });
+        
+        const validFilters = Object.entries(filters).reduce((acc, [key, value]) => {
+            if (value !== undefined && value !== "") {
+                acc[key] = value;
+            }
+            return acc;
+        }, {});
+        let query = new URLSearchParams(validFilters).toString();
+        const url = `/api/products/?${query}`;
+        const { data } = await axios.get(url);
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
             payload: data
-        })
-
+        });
     } catch (error) {
         dispatch({
             type: PRODUCT_LIST_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,
-        })
+        });
     }
-}
+};
+
+
+
+export const fetchFilterOptions = () => async (dispatch) => {
+    try {
+        dispatch({ type: 'FILTER_OPTIONS_REQUEST' });
+        const { data } = await axios.get(`/api/products/filters/`);
+        dispatch({
+            type: 'FILTER_OPTIONS_SUCCESS',
+            payload: data
+        });
+    } catch (error) {
+        dispatch({
+            type: 'FILTER_OPTIONS_FAIL',
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+        });
+    }
+};
+
+
 
 
 

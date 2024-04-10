@@ -8,6 +8,7 @@ import {
   productDeleteReducer,
   productCreateReducer,
   productUpdateReducer,
+  filterOptionsReducer
 } from './reducers/productReducers';
 
 import {
@@ -27,6 +28,7 @@ import {
 } from './reducers/reservationReducers';
 
 const reducer = combineReducers({
+  filterOptions:filterOptionsReducer,
   branchList: branchListReducer,
   productList: productListReducer,
   productDetails: productDetailsReducer,

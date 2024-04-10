@@ -26,14 +26,23 @@ function ConfirmationScreen() {
         }
     }, [reservationInfo]);
 
+
+    const formatAmount = () => {
+        if (paymentInfo && paymentInfo.amount && !isNaN(Number(paymentInfo.amount))) {
+            return `$${(parseFloat(paymentInfo.amount)).toFixed(2)}`;
+        }
+        return "Calculating...";
+    };
+
+    
     const sendEmail = () => {
         const templateParams = {
             productName,
             startDate: reservationInfo?.startDate,
             endDate: reservationInfo?.endDate,
-            cardName: paymentInfo?.cardName,
-            cardNumber: paymentInfo?.cardNumber,
-            amount: (parseFloat(paymentInfo.amount) + 500).toFixed(2),
+            cardName: paymentInfo?.card_name,
+            cardNumber: paymentInfo?.card_number,
+            amount: formatAmount(),
             userEmail: reservationInfo?.user
            
         };
@@ -78,9 +87,9 @@ function ConfirmationScreen() {
             `Start Date: ${reservationInfo?.startDate} at 10:00 AM`,
             `End Date: ${reservationInfo?.endDate} at 6:00 PM`,
             "Car pick up and return Location: 23213, Laval, A1B 2C3, Canada",
-            `Card Name: ${paymentInfo?.cardName}`,
-            `Card Number: ${paymentInfo?.cardNumber}`,
-            `Amount Paid: $${(parseFloat(paymentInfo.amount) + 500).toFixed(2)}`,
+            `Card Name: ${paymentInfo?.card_name}`,
+            `Card Number: ${paymentInfo?.card_number}`,
+            `Amount Paid: ${formatAmount()}`,
         ];
     
         details.forEach(detail => {
@@ -138,10 +147,11 @@ function ConfirmationScreen() {
                     <p>Start Date: {reservationInfo?.startDate} at 10:00 AM</p>
                     <p>End Date: {reservationInfo?.endDate} at 6:00PM</p>
                     <p>Car pick up and return Location: 23213, Laval, A1B 2C3, canada </p> 
+                    
                     <h4>Payment Details:</h4>
-                    <p>Card Name: {paymentInfo?.cardName}</p>
-                    <p>Card Number: {paymentInfo?.cardNumber}</p>
-                    <p>Amount Paid: ${paymentInfo?.amount.toFixed(2)}</p>
+                    <p>Card Name: {paymentInfo?.card_name}</p>
+                    <p>Card Number: {paymentInfo?.card_number}</p>
+                    <p>Amount Paid: {formatAmount()}</p>
                    <p> <Button onClick={generatePDF} style={{marginLeft: "10px"}}>Download Agreement</Button></p>
                    <div>
                 <input

@@ -29,6 +29,7 @@ import ReservationDetailScreen from './screens/ReservationDetailScreen';
 import ConfirmationScreen from './screens/ConfirmationScreen';
 import AddProductForm from './components/AddProductForm';
 import MyListings from './components/MyListings';
+import AdminPayments from './screens/AdminPayments';
 function App() {
   return (
     <Router>
@@ -57,6 +58,7 @@ function App() {
               <Route path='/mylistings' element={<MyListings />} />
 
               <Route path="/admin/userlist" element={<UserListScreen />} />
+              <Route path="/admin/paymentlist" element={<AdminPayments />} />
               <Route path="/admin/user/:id/edit" element={<UserEditScreen />} />
               <Route path='/admin/reservationlist' element={<ReservationListScreen />} />
               <Route path="/admin/reservation/:id" element={<ReservationDetailScreen />} />

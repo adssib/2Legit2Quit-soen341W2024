@@ -28,8 +28,8 @@ export const reservationCreateReducer = (state = initialState, action) => {
             case RESERVATION_CREATE_RESET:
                 return {
                   ...state,
-                  success: false, // Reset success state
-                  // Reset any other relevant state properties as needed
+                  success: false, 
+                  
                 };
         default:
             return state;

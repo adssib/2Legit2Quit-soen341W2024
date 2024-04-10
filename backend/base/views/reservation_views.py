@@ -71,3 +71,11 @@ def delete_reservation(request, reservation_id):
 
     reservation.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_reservations(request):
+    user = request.user
+    reservations = Reservation.objects.filter(user=user)
+    serializer = ReservationSerializer(reservations, many=True)
+    return Response(serializer.data)

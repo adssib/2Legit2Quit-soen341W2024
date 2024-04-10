@@ -32,22 +32,21 @@ function ReservationListScreen() {
 
     const handleDeleteReservation = async (reservationId) => {
         try {
-            // Send a DELETE request to the backend API
+            
             const response = await axios.delete(`/api/reservations/${reservationId}/delete`, {
                 headers: {
-                    Authorization: `Bearer ${userInfo.token}` // Include authorization token if needed
+                    Authorization: `Bearer ${userInfo.token}` 
                 }
             });
-            // Handle successful deletion
+           
             console.log('Reservation deleted successfully');
             
-            // Dispatch the listReservations action again to refresh the reservation list
+           
             dispatch(listReservations());
     
-            // You may also show a success message to the user
             
         } catch (error) {
-            // Handle errors
+            
             console.error('Error deleting reservation:', error);
         }
     };
