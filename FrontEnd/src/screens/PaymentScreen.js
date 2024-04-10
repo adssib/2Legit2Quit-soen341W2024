@@ -12,6 +12,7 @@ function PaymentScreen() {
 
     const [transactions, setTransactions] = useState([]);
     const [cardName, setCardName] = useState('');
+    const [email, setEmail] = useState('');
     const [cardNumber, setCardNumber] = useState('');
     const [expMonth, setExpMonth] = useState('');
     const [expYear, setExpYear] = useState('');
@@ -55,9 +56,9 @@ function PaymentScreen() {
         const reservationInfo = {
             productId,
             startDate,
-            endDate
+            endDate,
+            user:email
         };
-        // Navigate to confirmation screen with state
         navigate('/confirmation', { state: { reservationInfo, paymentInfo } });
     };
     
@@ -87,6 +88,16 @@ function PaymentScreen() {
                                 required
                             />
                         </Form.Group>
+                        <Form.Group controlId="email">
+                        <Form.Label>Email Address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </Form.Group>
 
                         <Form.Group controlId="cardNumber">
                             <Form.Label>Card Number</Form.Label>

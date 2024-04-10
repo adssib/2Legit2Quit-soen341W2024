@@ -24,6 +24,7 @@ function ReservationStart() {
   // Redux state for handling reservation
     const reservationCreate = useSelector((state) => state.reservationCreate);
     const { loading, error, success } = reservationCreate;
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         if (selectedProductId) {
