@@ -8,7 +8,7 @@ class ReservationCreateTestCase(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = User.objects.create(username='testuser')
-        self.product = Product.objects.create(name='Car', price=100)  # Assuming Product with ID 1
+        self.product = Product.objects.create(name='Car', price=100) 
         self.valid_payload = {
             'product': self.product._id,
             'start_date': '2024-03-15',
@@ -26,7 +26,6 @@ class ReservationCreateTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_create_reservation_overlap(self):
-        # Create a reservation with overlapping dates
         self.client.force_authenticate(user=self.user)
         Reservation.objects.create(product=self.product, start_date='2024-03-18', end_date='2024-03-22')
         response = self.client.post('/api/create_reservation/', data=self.valid_payload, format='json')

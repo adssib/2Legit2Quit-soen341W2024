@@ -11,7 +11,6 @@ class TestProductViews(TestCase):
         self.client = APIClient()
         self.products_url = reverse('products')
         
-        # Create some products for testing
         self.product1 = Product.objects.create(
             name='Product 1',
             description='Description for product 1',
@@ -24,7 +23,6 @@ class TestProductViews(TestCase):
         )
 
     def test_get_products(self):
-        # Test retrieving all products
         response = self.client.get(self.products_url)
         products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
@@ -34,7 +32,7 @@ class TestProductViews(TestCase):
     def test_get_product(self):
         product_url = reverse('product', kwargs={'pk': self.product1._id})
         response = self.client.get(product_url)
-        product = Product.objects.get(_id=self.product1._id)  # Access _id instead of id
+        product = Product.objects.get(_id=self.product1._id)  
         serializer = ProductSerializer(product)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data, serializer.data)

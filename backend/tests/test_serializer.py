@@ -6,10 +6,8 @@ from base.serializers import ProductSerializer, ReservationSerializer, UserSeria
 
 class SerializerTestCase(TestCase):
     def setUp(self):
-        # Create a test user
         self.user = User.objects.create_user(username='testuser', password='password', email='test@example.com', first_name='Test')
 
-        # Create a test product
         self.product = Product.objects.create(
             user=self.user,
             name='Test Product',
@@ -22,7 +20,6 @@ class SerializerTestCase(TestCase):
             countInStock=20
         )
 
-        # Create a test reservation
         self.reservation = Reservation.objects.create(
             user=self.user,
             product=self.product,
@@ -30,10 +27,9 @@ class SerializerTestCase(TestCase):
             end_date='2022-01-05'
         )
 
-        # Create a test review
         self.review = Review.objects.create(
             product=self.product,
-            user=self.user,
+            user=self   .user,
             rating=4,
             comment='Test Comment'
         )
@@ -41,15 +37,12 @@ class SerializerTestCase(TestCase):
     def test_product_serializer(self):
         serializer = ProductSerializer(instance=self.product)
         self.assertEqual(serializer.data['name'], 'Test Product')
-        # Add more assertions for other fields
 
     def test_reservation_serializer(self):
         serializer = ReservationSerializer(instance=self.reservation)
         self.assertEqual(serializer.data['start_date'], '2022-01-01')
-        # Add more assertions for other fields
 
     def test_user_serializer_with_token(self):
         serializer = UserSerializerWithToken(instance=self.user)
         self.assertIn('token', serializer.data)
-        # Add more assertions for other fields
 

@@ -14,7 +14,6 @@ file_path = "../static/receipt/rental_agreement.pdf"
 @permission_classes([IsAuthenticated])  
 def reservation_list_or_create(request):
     if request.method == 'GET':
-        # List all reservations
         reservations = Reservation.objects.all()
         serializer = ReservationSerializer(reservations, many=True)
         return Response(serializer.data)
@@ -33,7 +32,6 @@ def reservation_list_or_create(request):
         ).exists()
 
         if overlapping_reservations:
-            # Car is not available
             return Response({"error": "This car is not available for the selected dates."}, status=400)
 
         serializer = ReservationSerializer(data=request.data)

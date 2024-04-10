@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class BranchAddress(models.Model):
-    # Add a unique identifier or name for the branch if desired
     branch_name = models.CharField(max_length=200, unique=True, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
     city = models.CharField(max_length=200, null=True, blank=True)
