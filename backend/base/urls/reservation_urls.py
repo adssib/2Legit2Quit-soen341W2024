@@ -1,4 +1,3 @@
-
 from django.urls import path
 from base.views import reservation_views  
 
