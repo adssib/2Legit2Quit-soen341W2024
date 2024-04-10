@@ -118,6 +118,7 @@ npm install
 For the reservation functionalities, this is also important to install:
 ```bash
 npm install react-datepicker 
+npm install emailjs-com
 ```
 To start it: 
 
