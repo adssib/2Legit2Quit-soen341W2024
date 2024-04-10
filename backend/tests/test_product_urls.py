@@ -10,6 +10,6 @@ class TestProductUrls(SimpleTestCase):
         self.assertEqual(resolve(url).func, views.getProducts)
 
     def test_product_detail_url_resolves(self):
-        url = reverse('product', args=['1'])  # You can change '1' to any valid product ID for testing
+        url = reverse('product', args=['1']) 
         self.assertEqual(resolve(url).func, views.getProduct)
 

@@ -1,10 +1,9 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from base.models import Product  # Import your Product model
+from base.models import Product  
 
 class TestProductURLs(TestCase):
     def setUp(self):
-        # Create a sample product for testing
         self.product = Product.objects.create(
             name='Test Product',
             price=100,
@@ -14,7 +13,6 @@ class TestProductURLs(TestCase):
             countInStock=10,
         )
 
-        # Create a Django test client
         self.client = Client()
 
     def test_get_products_url(self):
@@ -23,7 +21,7 @@ class TestProductURLs(TestCase):
 
     def test_create_product_url(self):
         response = self.client.post(reverse('product-create'))
-        self.assertEqual(response.status_code, 401)  # Adjust status code as needed
+        self.assertEqual(response.status_code, 401)  
 
     def test_get_product_url(self):
         response = self.client.get(reverse('product', args=[self.product.pk]))
@@ -31,8 +29,8 @@ class TestProductURLs(TestCase):
 
     def test_update_product_url(self):
         response = self.client.put(reverse('product-update', args=[self.product.pk]))
-        self.assertEqual(response.status_code, 401)  # Adjust status code as needed
+        self.assertEqual(response.status_code, 401)  
 
     def test_delete_product_url(self):
         response = self.client.delete(reverse('product-delete', args=[self.product.pk]))
-        self.assertEqual(response.status_code, 401)  # Adjust status code as needed
+        self.assertEqual(response.status_code, 401) 
