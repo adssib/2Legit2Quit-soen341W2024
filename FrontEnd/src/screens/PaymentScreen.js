@@ -195,11 +195,15 @@ function PaymentScreen() {
             readOnly
         />
     </Form.Group>
-    <Button type="submit" variant="primary">Confirm Payment</Button>
+    <Button 
+    type="submit" 
+    variant="primary"
+    disabled={cardNumber.length !== 16 || cvv.length !== 3 || expYear < 2024}>
+    Confirm Payment
+</Button>
 </Form>
 
 
-                    {/* Transaction Table */}
                     {transactions.length > 0 && (
                         <Table striped bordered hover className="mt-4">
                             <thead>

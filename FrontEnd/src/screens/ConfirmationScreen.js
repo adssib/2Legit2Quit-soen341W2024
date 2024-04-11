@@ -146,25 +146,25 @@ function ConfirmationScreen() {
                     <p>Product: {productName || "Loading product name..."}</p>
                     <p>Start Date: {reservationInfo?.startDate} at 10:00 AM</p>
                     <p>End Date: {reservationInfo?.endDate} at 6:00PM</p>
-                    <p>Car pick up and return Location: 23213, Laval, A1B 2C3, canada </p> 
+                    <p>Car pick up and return Location: 23213, Laval, A1B 2C3, Canada </p> 
                     
                     <h4>Payment Details:</h4>
                     <p>Card Name: {paymentInfo?.card_name}</p>
                     <p>Card Number: {paymentInfo?.card_number}</p>
                     <p>Amount Paid: {formatAmount()}</p>
-                   <p> <Button onClick={generatePDF} style={{marginLeft: "10px"}}>Download Agreement</Button></p>
-                   <div>
-                <input
-                    type="checkbox"
-                    id="acceptAgreement"
-                    checked={hasAcceptedAgreement}
-                    onChange={(e) => setHasAcceptedAgreement(e.target.checked)}
-                />
-                <label htmlFor="acceptAgreement" style={{marginLeft: "5px"}}>
-                    I have read and accepted the agreement
-                </label>
-            </div>
-                    <Button onClick={sendEmail}>Confirm Booking</Button>
+                    <p><Button onClick={generatePDF} style={{marginLeft: "10px"}}>Download Agreement</Button></p>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="acceptAgreement"
+                            checked={hasAcceptedAgreement}
+                            onChange={(e) => setHasAcceptedAgreement(e.target.checked)}
+                        />
+                        <label htmlFor="acceptAgreement" style={{marginLeft: "5px"}}>
+                            I have read and accepted the agreement
+                        </label>
+                    </div>
+                    <Button onClick={sendEmail} disabled={!hasAcceptedAgreement}>Confirm Booking</Button>
                 </Col>
             </Row>
         </Container>
