@@ -1,24 +1,18 @@
-from django.test import TestCase
+from django.test import SimpleTestCase
 from django.urls import reverse, resolve
-from base.views import payment_views
+from base.views.payment_views import create_payment, list_payments, delete_payment
 
-class TestPaymentURLs(TestCase):
-    def test_process_payment_url(self):
-        url = reverse('process-payment')
-        resolver = resolve(url)
-        self.assertEqual(resolver.func, payment_views.process_payment)
+class TestPaymentUrls(SimpleTestCase):
+    def test_create_payment_url_resolves(self):
+        url = reverse('create-payment')
+        self.assertEqual(resolve(url).func, create_payment)
 
-    def test_add_funds_url(self):
-        url = reverse('add-funds', args=[1])  # Assuming user ID is 1 for testing
-        resolver = resolve(url)
-        self.assertEqual(resolver.func, payment_views.add_funds)
+    def test_list_payments_url_resolves(self):
+        url = reverse('list-payments')
+        self.assertEqual(resolve(url).func, list_payments)
 
-    def test_deduct_funds_url(self):
-        url = reverse('deduct-funds', args=[1])  # Assuming user ID is 1 for testing
-        resolver = resolve(url)
-        self.assertEqual(resolver.func, payment_views.deduct_funds)
+    def test_delete_payment_url_resolves(self):
+        url = reverse('delete-payment', args=[1])  # Assuming a payment with pk=1
+        self.assertEqual(resolve(url).func, delete_payment)
 
-    def test_retrieve_payment_url(self):
-        url = reverse('retrieve-payment', args=[1])  # Assuming payment ID is 1 for testing
-        resolver = resolve(url)
-        self.assertEqual(resolver.func, payment_views.retrieve_payment)
+    # Add more tests as needed

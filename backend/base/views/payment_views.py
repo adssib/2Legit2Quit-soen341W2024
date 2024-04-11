@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from base.models import Payment
 from base.serializers import PaymentSerializer
+from rest_framework import status
 
 @api_view(['GET'])
 def list_payments(request):
