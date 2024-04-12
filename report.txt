@@ -1,0 +1,495 @@
+************* Module backend.settings
+backend/backend/settings.py:84:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/backend/settings.py:184:0: C0304: Final newline missing (missing-final-newline)
+************* Module backend.urls
+backend/backend/urls.py:30:60: C0303: Trailing whitespace (trailing-whitespace)
+backend/backend/urls.py:34:0: C0304: Final newline missing (missing-final-newline)
+************* Module base.admin
+backend/base/admin.py:11:0: C0304: Final newline missing (missing-final-newline)
+backend/base/admin.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/admin.py:2:0: W0401: Wildcard import models (wildcard-import)
+backend/base/admin.py:2:0: W0614: Unused import(s) UserAccount, models and User from wildcard import of models (unused-wildcard-import)
+************* Module base.apps
+backend/base/apps.py:8:0: C0304: Final newline missing (missing-final-newline)
+backend/base/apps.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/apps.py:4:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/apps.py:8:8: C0415: Import outside toplevel (base.signals) (import-outside-toplevel)
+backend/base/apps.py:8:8: W0611: Unused import base.signals (unused-import)
+************* Module base.generate_contract
+backend/base/generate_contract.py:127:0: C0304: Final newline missing (missing-final-newline)
+************* Module base.models
+backend/base/models.py:14:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:33:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:36:0: W0311: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+backend/base/models.py:37:0: W0311: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+backend/base/models.py:38:0: W0311: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+backend/base/models.py:39:0: W0311: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+backend/base/models.py:40:0: W0311: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+backend/base/models.py:41:0: W0311: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+backend/base/models.py:43:0: W0311: Bad indentation. Found 8 spaces, expected 4 (bad-indentation)
+backend/base/models.py:44:0: W0311: Bad indentation. Found 12 spaces, expected 8 (bad-indentation)
+backend/base/models.py:45:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:47:0: W0311: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
+backend/base/models.py:48:0: W0311: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
+backend/base/models.py:49:0: W0311: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
+backend/base/models.py:50:0: W0311: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
+backend/base/models.py:51:0: W0311: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
+backend/base/models.py:52:0: W0311: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
+backend/base/models.py:53:0: W0311: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
+backend/base/models.py:54:0: W0311: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
+backend/base/models.py:56:0: W0311: Bad indentation. Found 5 spaces, expected 4 (bad-indentation)
+backend/base/models.py:57:0: W0311: Bad indentation. Found 9 spaces, expected 8 (bad-indentation)
+backend/base/models.py:71:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:74:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:82:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:90:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:93:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:98:50: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:106:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:107:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/models.py:141:0: C0304: Final newline missing (missing-final-newline)
+backend/base/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/models.py:4:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/models.py:12:4: E0307: __str__ does not return str (invalid-str-returned)
+backend/base/models.py:15:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/models.py:31:4: E0307: __str__ does not return str (invalid-str-returned)
+backend/base/models.py:35:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/models.py:46:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/models.py:60:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/models.py:75:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/models.py:96:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/models.py:109:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/models.py:114:15: E1101: Instance of 'OneToOneField' has no 'username' member (no-member)
+backend/base/models.py:116:4: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/models.py:120:4: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/models.py:128:4: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/models.py:130:27: E1101: Class 'UserAccount' has no 'objects' member (no-member)
+backend/base/models.py:135:15: E1101: Class 'UserAccount' has no 'DoesNotExist' member (no-member)
+backend/base/models.py:140:4: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/models.py:141:15: E1101: Class 'Payment' has no 'objects' member (no-member)
+************* Module base.serializers
+backend/base/serializers.py:34:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/serializers.py:74:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/serializers.py:97:0: C0304: Final newline missing (missing-final-newline)
+backend/base/serializers.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/serializers.py:5:0: W0404: Reimport 'serializers' (imported line 1) (reimported)
+backend/base/serializers.py:9:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:10:4: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:10:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/base/serializers.py:15:15: E1101: Class 'UserAccount' has no 'objects' member (no-member)
+backend/base/serializers.py:23:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:24:4: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:24:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/base/serializers.py:28:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:30:4: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:30:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/base/serializers.py:35:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:40:4: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:40:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/base/serializers.py:44:4: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/serializers.py:44:4: R0201: Method could be a function (no-self-use)
+backend/base/serializers.py:47:4: C0103: Method name "get_isAdmin" doesn't conform to snake_case naming style (invalid-name)
+backend/base/serializers.py:47:4: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/serializers.py:47:4: R0201: Method could be a function (no-self-use)
+backend/base/serializers.py:50:4: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/serializers.py:50:4: R0201: Method could be a function (no-self-use)
+backend/base/serializers.py:57:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:61:58: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/serializers.py:64:4: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:64:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/base/serializers.py:72:4: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/serializers.py:72:4: R0201: Method could be a function (no-self-use)
+backend/base/serializers.py:75:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:78:4: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:78:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/base/serializers.py:82:4: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/serializers.py:82:4: R0201: Method could be a function (no-self-use)
+backend/base/serializers.py:87:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:88:4: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:88:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/base/serializers.py:94:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:95:4: C0115: Missing class docstring (missing-class-docstring)
+backend/base/serializers.py:95:4: R0903: Too few public methods (0/2) (too-few-public-methods)
+backend/base/serializers.py:4:0: C0411: third party import "from rest_framework_simplejwt.tokens import RefreshToken" should be placed before "from .models import Product, Reservation, User, Review, BranchAddress" (wrong-import-order)
+backend/base/serializers.py:5:0: C0411: third party import "from rest_framework import serializers" should be placed before "from .models import Product, Reservation, User, Review, BranchAddress" (wrong-import-order)
+backend/base/serializers.py:5:0: C0412: Imports from package rest_framework are not grouped (ungrouped-imports)
+************* Module base.signals
+backend/base/signals.py:11:0: C0304: Final newline missing (missing-final-newline)
+backend/base/signals.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/signals.py:5:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/signals.py:5:15: W0613: Unused argument 'sender' (unused-argument)
+backend/base/signals.py:5:0: W0613: Unused argument 'kwargs' (unused-argument)
+************* Module base.tests
+backend/base/tests.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/tests.py:1:0: W0611: Unused TestCase imported from django.test (unused-import)
+************* Module branch_urls
+backend/base/urls/branch_urls.py:5:49: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/urls/branch_urls.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module payment_urls
+backend/base/urls/payment_urls.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module product_urls
+backend/base/urls/product_urls.py:12:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/urls/product_urls.py:13:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/urls/product_urls.py:24:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/urls/product_urls.py:26:0: C0304: Final newline missing (missing-final-newline)
+backend/base/urls/product_urls.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module reservation_urls
+backend/base/urls/reservation_urls.py:5:80: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/urls/reservation_urls.py:11:0: C0304: Final newline missing (missing-final-newline)
+backend/base/urls/reservation_urls.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module user_urls
+backend/base/urls/user_urls.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/urls/user_urls.py:4:0: W0404: Reimport 'path' (imported line 1) (reimported)
+backend/base/urls/user_urls.py:3:0: W0611: Unused admin imported from django.contrib (unused-import)
+backend/base/urls/user_urls.py:4:0: W0611: Unused include imported from django.urls (unused-import)
+backend/base/urls/user_urls.py:3:0: C0412: Imports from package django are not grouped (ungrouped-imports)
+************* Module list_reservations_view
+backend/base/views/list_reservations_view.py:2:54: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/list_reservations_view.py:5:50: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/list_reservations_view.py:22:0: C0304: Final newline missing (missing-final-newline)
+backend/base/views/list_reservations_view.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/views/list_reservations_view.py:9:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/list_reservations_view.py:11:19: E1101: Class 'Reservation' has no 'objects' member (no-member)
+backend/base/views/list_reservations_view.py:9:22: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/list_reservations_view.py:16:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/list_reservations_view.py:17:4: R1705: Unnecessary "else" after "return" (no-else-return)
+backend/base/views/list_reservations_view.py:18:23: E1101: Class 'Reservation' has no 'objects' member (no-member)
+backend/base/views/list_reservations_view.py:16:28: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/list_reservations_view.py:2:0: W0611: Unused IsAuthenticated imported from rest_framework.permissions (unused-import)
+backend/base/views/list_reservations_view.py:6:0: W0611: Unused JsonResponse imported from django.http (unused-import)
+************* Module payment_views
+backend/base/views/payment_views.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/views/payment_views.py:13:15: E1101: Class 'Payment' has no 'objects' member (no-member)
+backend/base/views/payment_views.py:9:18: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/payment_views.py:29:28: C0103: Argument name "pk" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/payment_views.py:34:18: E1101: Class 'Payment' has no 'objects' member (no-member)
+backend/base/views/payment_views.py:37:11: E1101: Class 'Payment' has no 'DoesNotExist' member (no-member)
+backend/base/views/payment_views.py:29:19: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/payment_views.py:1:0: W0611: Unused JsonResponse imported from django.http (unused-import)
+backend/base/views/payment_views.py:6:0: C0412: Imports from package rest_framework are not grouped (ungrouped-imports)
+************* Module product_views
+backend/base/views/product_views.py:44:39: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:63:58: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:64:64: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:91:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:107:52: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:113:43: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:115:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:139:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:141:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:142:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:149:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:166:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:183:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:189:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:193:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:197:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:202:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/product_views.py:215:0: C0305: Trailing newlines (trailing-newlines)
+backend/base/views/product_views.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/views/product_views.py:12:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:13:13: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:12:16: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/product_views.py:18:24: C0103: Argument name "pk" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/product_views.py:18:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:19:12: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:18:15: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/product_views.py:25:27: C0103: Argument name "pk" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/product_views.py:25:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:26:14: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:25:18: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/product_views.py:32:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:36:14: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:53:27: C0103: Argument name "pk" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/product_views.py:53:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:55:14: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:71:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:75:14: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:83:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:84:15: E1101: Class 'BranchAddress' has no 'objects' member (no-member)
+backend/base/views/product_views.py:83:16: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/product_views.py:89:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:92:19: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:95:11: E1101: Class 'BranchAddress' has no 'DoesNotExist' member (no-member)
+backend/base/views/product_views.py:89:24: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/product_views.py:100:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:104:14: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:122:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:124:15: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:131:29: C0103: Argument name "pk" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/product_views.py:131:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:138:11: W0703: Catching too general exception Exception (broad-except)
+backend/base/views/product_views.py:133:18: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:136:11: E1101: Class 'Product' has no 'DoesNotExist' member (no-member)
+backend/base/views/product_views.py:138:4: C0103: Variable name "e" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/product_views.py:138:4: W0612: Unused variable 'e' (unused-variable)
+backend/base/views/product_views.py:145:0: E0102: function already defined line 100 (function-redefined)
+backend/base/views/product_views.py:145:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:153:17: E1101: Class 'BranchAddress' has no 'objects' member (no-member)
+backend/base/views/product_views.py:155:14: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:174:19: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:171:19: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/product_views.py:180:0: E0102: function already defined line 12 (function-redefined)
+backend/base/views/product_views.py:180:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:182:15: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:186:19: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:188:19: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:208:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/product_views.py:209:13: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:210:17: E1101: Class 'Product' has no 'objects' member (no-member)
+backend/base/views/product_views.py:208:21: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/product_views.py:1:0: W0611: Unused render imported from django.shortcuts (unused-import)
+backend/base/views/product_views.py:6:0: W0611: Unused Paginator imported from django.core.paginator (unused-import)
+backend/base/views/product_views.py:6:0: W0611: Unused EmptyPage imported from django.core.paginator (unused-import)
+backend/base/views/product_views.py:6:0: W0611: Unused PageNotAnInteger imported from django.core.paginator (unused-import)
+backend/base/views/product_views.py:8:0: W0611: Unused Review imported from base.models (unused-import)
+backend/base/views/product_views.py:6:0: C0412: Imports from package django are not grouped (ungrouped-imports)
+************* Module reservation_views
+backend/base/views/reservation_views.py:14:38: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/reservation_views.py:20:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/reservation_views.py:30:41: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/reservation_views.py:31:40: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/reservation_views.py:64:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/reservation_views.py:81:0: C0304: Final newline missing (missing-final-newline)
+backend/base/views/reservation_views.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/views/reservation_views.py:11:0: C0103: Constant name "file_path" doesn't conform to UPPER_CASE naming style (invalid-name)
+backend/base/views/reservation_views.py:15:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/reservation_views.py:16:4: R1705: Unnecessary "elif" after "return" (no-else-return)
+backend/base/views/reservation_views.py:17:23: E1101: Class 'Reservation' has no 'objects' member (no-member)
+backend/base/views/reservation_views.py:28:35: E1101: Class 'Reservation' has no 'objects' member (no-member)
+backend/base/views/reservation_views.py:38:8: R1705: Unnecessary "else" after "return" (no-else-return)
+backend/base/views/reservation_views.py:15:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+backend/base/views/reservation_views.py:50:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/reservation_views.py:62:11: W0703: Catching too general exception Exception (broad-except)
+backend/base/views/reservation_views.py:53:8: R1705: Unnecessary "elif" after "return" (no-else-return)
+backend/base/views/reservation_views.py:62:4: C0103: Variable name "e" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/reservation_views.py:50:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+backend/base/views/reservation_views.py:66:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/reservation_views.py:68:22: E1101: Class 'Reservation' has no 'objects' member (no-member)
+backend/base/views/reservation_views.py:69:11: E1101: Class 'Reservation' has no 'DoesNotExist' member (no-member)
+backend/base/views/reservation_views.py:66:23: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/reservation_views.py:77:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/reservation_views.py:79:19: E1101: Class 'Reservation' has no 'objects' member (no-member)
+backend/base/views/reservation_views.py:5:0: W0611: Unused Product imported from base.models (unused-import)
+backend/base/views/reservation_views.py:4:0: C0411: standard import "from datetime import datetime" should be placed before "from rest_framework.decorators import api_view, permission_classes" (wrong-import-order)
+backend/base/views/reservation_views.py:9:0: C0412: Imports from package rest_framework are not grouped (ungrouped-imports)
+************* Module user_views
+backend/base/views/user_views.py:54:57: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/user_views.py:94:0: C0303: Trailing whitespace (trailing-whitespace)
+backend/base/views/user_views.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+backend/base/views/user_views.py:15:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/views/user_views.py:15:0: W0223: Method 'create' is abstract in class 'BaseSerializer' but is not overridden (abstract-method)
+backend/base/views/user_views.py:15:0: W0223: Method 'update' is abstract in class 'BaseSerializer' but is not overridden (abstract-method)
+backend/base/views/user_views.py:20:15: C0103: Variable name "v" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/user_views.py:26:0: C0115: Missing class docstring (missing-class-docstring)
+backend/base/views/user_views.py:31:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/user_views.py:43:4: W0702: No exception type(s) specified (bare-except)
+backend/base/views/user_views.py:50:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/user_views.py:68:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/user_views.py:76:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/user_views.py:76:13: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/user_views.py:84:25: C0103: Argument name "pk" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/user_views.py:84:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/user_views.py:84:16: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/user_views.py:92:24: C0103: Argument name "pk" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/user_views.py:92:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/user_views.py:111:24: C0103: Argument name "pk" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/user_views.py:111:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/user_views.py:112:4: C0103: Variable name "userForDeletion" doesn't conform to snake_case naming style (invalid-name)
+backend/base/views/user_views.py:111:15: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/user_views.py:118:0: C0116: Missing function or method docstring (missing-function-docstring)
+backend/base/views/user_views.py:123:11: E1101: Class 'User' has no 'DoesNotExist' member (no-member)
+backend/base/views/user_views.py:118:19: W0613: Unused argument 'request' (unused-argument)
+backend/base/views/user_views.py:1:0: W0611: Unused render imported from django.shortcuts (unused-import)
+backend/base/views/user_views.py:6:0: C0412: Imports from package django are not grouped (ungrouped-imports)
+backend/base/views/user_views.py:11:0: C0412: Imports from package django are not grouped (ungrouped-imports)
+backend/base/views/user_views.py:12:0: C0412: Imports from package rest_framework are not grouped (ungrouped-imports)
+************* Module manage
+backend/manage.py:11:8: C0415: Import outside toplevel (django.core.management.execute_from_command_line) (import-outside-toplevel)
+
+
+Report
+======
+565 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |24     |24         |=          |33.33       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |27     |27         |=          |0.00        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |21     |21         |=          |57.14       |4.76     |
++---------+-------+-----------+-----------+------------+---------+
+|function |34     |34         |=          |14.71       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+External dependencies
+---------------------
+::
+
+    base 
+      \-models (list_reservations_view,payment_views,product_views,reservation_views)
+      \-serializers (list_reservations_view,payment_views,product_views,reservation_views,user_views)
+      \-views 
+        \-list_reservations_view (reservation_urls)
+        \-payment_views (payment_urls)
+        \-product_views (branch_urls,product_urls)
+        \-reservation_views (reservation_urls)
+        \-user_views (user_urls)
+    django 
+      \-apps (base.apps)
+      \-conf (backend.urls)
+      | \-urls 
+      |   \-static (backend.urls)
+      \-contrib 
+      | \-admin (backend.urls,base.admin,user_urls)
+      | \-auth 
+      |   \-hashers (user_views)
+      |   \-models (base.models,base.serializers,base.signals,user_views)
+      \-core 
+      | \-asgi (backend.asgi)
+      | \-management (manage)
+      | \-paginator (product_views)
+      | \-wsgi (backend.wsgi)
+      \-db 
+      | \-models (base.models)
+      |   \-signals (base.signals)
+      \-http (list_reservations_view,payment_views)
+      \-shortcuts (product_views,reservation_views,user_views)
+      \-test (base.tests)
+      \-urls (backend.urls,branch_urls,payment_urls,product_urls,reservation_urls,user_urls)
+      \-views 
+        \-generic (backend.urls)
+    rest_framework 
+      \-decorators (list_reservations_view,payment_views,product_views,reservation_views,user_views)
+      \-permissions (list_reservations_view,product_views,reservation_views,user_views)
+      \-response (list_reservations_view,payment_views,product_views,reservation_views,user_views)
+      \-serializers (base.serializers)
+      \-status (payment_views,product_views,reservation_views,user_views)
+    rest_framework_simplejwt 
+      \-serializers (user_views)
+      \-tokens (base.serializers)
+      \-views (user_views)
+
+
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |759    |59.58 |759      |=          |
++----------+-------+------+---------+-----------+
+|docstring |114    |8.95  |114      |=          |
++----------+-------+------+---------+-----------+
+|comment   |135    |10.60 |135      |=          |
++----------+-------+------+---------+-----------+
+|empty     |266    |20.88 |266      |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |0          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |167    |167      |167        |
++-----------+-------+---------+-----------+
+|refactor   |19     |19       |19         |
++-----------+-------+---------+-----------+
+|warning    |60     |60       |60         |
++-----------+-------+---------+-----------+
+|error      |42     |42       |42         |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++-------------------------------+------------+
+|message id                     |occurrences |
++===============================+============+
+|trailing-whitespace            |46          |
++-------------------------------+------------+
+|no-member                      |38          |
++-------------------------------+------------+
+|missing-function-docstring     |38          |
++-------------------------------+------------+
+|missing-class-docstring        |27          |
++-------------------------------+------------+
+|unused-argument                |18          |
++-------------------------------+------------+
+|bad-indentation                |18          |
++-------------------------------+------------+
+|missing-module-docstring       |16          |
++-------------------------------+------------+
+|unused-import                  |14          |
++-------------------------------+------------+
+|invalid-name                   |14          |
++-------------------------------+------------+
+|missing-final-newline          |12          |
++-------------------------------+------------+
+|ungrouped-imports              |8           |
++-------------------------------+------------+
+|too-few-public-methods         |8           |
++-------------------------------+------------+
+|no-self-use                    |5           |
++-------------------------------+------------+
+|no-else-return                 |4           |
++-------------------------------+------------+
+|wrong-import-order             |3           |
++-------------------------------+------------+
+|reimported                     |2           |
++-------------------------------+------------+
+|invalid-str-returned           |2           |
++-------------------------------+------------+
+|inconsistent-return-statements |2           |
++-------------------------------+------------+
+|import-outside-toplevel        |2           |
++-------------------------------+------------+
+|function-redefined             |2           |
++-------------------------------+------------+
+|broad-except                   |2           |
++-------------------------------+------------+
+|abstract-method                |2           |
++-------------------------------+------------+
+|wildcard-import                |1           |
++-------------------------------+------------+
+|unused-wildcard-import         |1           |
++-------------------------------+------------+
+|unused-variable                |1           |
++-------------------------------+------------+
+|trailing-newlines              |1           |
++-------------------------------+------------+
+|bare-except                    |1           |
++-------------------------------+------------+
+
+
+
+
+------------------------------------------------------------------
+Your code has been rated at 1.93/10 (previous run: 1.93/10, +0.00)
+
