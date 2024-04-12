@@ -9,31 +9,30 @@ function AdminPayments() {
         const fetchPayments = async () => {
             try {
                 const { data } = await axios.get('/api/payments/list/');
-                console.log("Received payments:", data); // Log to see the raw data
                 setPayments(data.map(payment => ({
                     ...payment,
-                    amount: parseFloat(payment.amount)  // Attempt to parse the amount as a float
+                    amount: parseFloat(payment.amount)  // Parse the amount as a float
                 })));
             } catch (error) {
                 console.error("Failed to fetch payments:", error);
+                alert("Failed to fetch payments: " + error.message);
             }
         };
         fetchPayments();
     }, []);
-    
+
     const deletePayment = async (id) => {
         if (window.confirm('Are you sure you want to delete this payment?')) {
             try {
                 await axios.delete(`/api/payments/delete/${id}/`);
-                // Update the state to reflect the deletion of the payment
                 setPayments(currentPayments => currentPayments.filter(payment => payment.id !== id));
-                console.log('Payment deleted successfully');  // Log the successful deletion
+                console.log('Payment deleted successfully');
             } catch (error) {
                 console.error("Failed to delete payment:", error);
+                alert("Failed to delete payment: " + error.message);
             }
         }
     };
-    
 
     return (
         <div>

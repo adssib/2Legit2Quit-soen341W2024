@@ -51,13 +51,15 @@ export const createReservation = (reservationData) => async (dispatch, getState)
         });
 
     } catch (error) {
+        const errorMessage = error.response && (error.response.data.error || error.response.data.detail)
+            ? error.response.data.error || error.response.data.detail
+            : error.message;
         dispatch({
             type: CREATE_RESERVATION_FAIL,
-            payload: error.response && error.response.data.detail
-                ? error.response.data.detail
-                : error.message,
+            payload: errorMessage,
         });
     }
+    
 };
 export const listReservations = () => async (dispatch, getState) => {
     try {

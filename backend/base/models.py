@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 class BranchAddress(models.Model):
     branch_name = models.CharField(max_length=200, unique=True, null=True, blank=True)
@@ -93,9 +94,12 @@ class Reservation(models.Model):
         
         return f"{product_name} from {self.start_date} to {self.end_date}"
 
+
+
 class Payment(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     card_name = models.CharField(max_length=255)
-    card_number = models.CharField(max_length=255) 
+    card_number = models.CharField(max_length=255)
     exp_month = models.CharField(max_length=2)
     exp_year = models.CharField(max_length=4)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
@@ -103,6 +107,7 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"{self.card_name} - {self.date}"
+
     
     
 
