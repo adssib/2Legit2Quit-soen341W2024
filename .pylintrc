@@ -304,6 +304,7 @@ mixin-class-rgx=.*[Mm]ixin
 
 # List of decorators that change the signature of a decorated function.
 signature-mutators=
+overgeneral-exceptions=builtins.BaseException, builtins.Exception
 
 
 [LOGGING]
