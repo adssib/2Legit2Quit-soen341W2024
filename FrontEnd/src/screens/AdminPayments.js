@@ -25,14 +25,15 @@ function AdminPayments() {
         if (window.confirm('Are you sure you want to delete this payment?')) {
             try {
                 await axios.delete(`/api/payments/delete/${id}/`);
-                window.location.reload();
-                setPayments(payments.filter(payment => payment.id !== id));
-                
+                // Update the state to reflect the deletion of the payment
+                setPayments(currentPayments => currentPayments.filter(payment => payment.id !== id));
+                console.log('Payment deleted successfully');  // Log the successful deletion
             } catch (error) {
                 console.error("Failed to delete payment:", error);
             }
         }
     };
+    
 
     return (
         <div>

@@ -50,7 +50,7 @@ const FilterBar = ({ brands = [], categories = [], setFilters }) => {
 
     return (
         <div>
-            <Col md={3}>
+            <Col >
                 <h4>Branch</h4>
                 <ListGroup variant="flush">
                     {branches.map((branch) => (
