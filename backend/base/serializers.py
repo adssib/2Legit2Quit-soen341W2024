@@ -26,7 +26,7 @@ class BranchAddressSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
-    branch = BranchAddressSerializer(read_only=True)  # Include this line if you want to nest branch address details
+    branch = BranchAddressSerializer(read_only=True)  
     class Meta:
         model = Product
         fields = '__all__'
