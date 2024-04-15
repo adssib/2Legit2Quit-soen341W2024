@@ -108,7 +108,6 @@ function ReservationStart() {
     }, [selectedCar]);
     useEffect(() => {
         if (error) {
-            // Assuming `error` is the message string set by the CREATE_RESERVATION_FAIL action
             setErrorMessage(error);
         }
     }, [error]);
